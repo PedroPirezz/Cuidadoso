@@ -73,15 +73,19 @@ const Cadastros = connection.define('cadastros', {
         allownull: true
     },
     Complemento: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING, 
         allownull: true
     },
     Referencia: {
         type: Sequelize.STRING,
         allownull: true
-    },
+    }, 
     descricao:{
         type:Sequelize.TEXT,
+        allowNull:true
+    },
+    Diaria:{
+        type:Sequelize.INTEGER,
         allowNull:true
     }
 })

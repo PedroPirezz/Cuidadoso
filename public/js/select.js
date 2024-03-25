@@ -7,11 +7,11 @@ uf.addEventListener('change', async function() {
     const request = await fetch(urlCidade)
     const response = await request.json()
     let options = ''
-    response.forEach(element => {
-        options += '<option>'+element.nome+'</option>'
+        response.forEach(element => {
+            options += '<option>'+element.nome+'</option>'
+        })
+        city.innerHTML = options
     })
-    city.innerHTML = options
-})
 
 window.addEventListener('load', async () => {
     const request = await fetch(url)

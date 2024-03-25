@@ -1,16 +1,6 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<%-include('partials/head.ejs') %>
-
-  <body>
-
-    <!-- ======= Header ======= -->
-    <%-include('partials/header.ejs') %>
-      <!-- End Header -->
 
       <main id="main">
 
@@ -103,6 +93,8 @@
                     </li><br><br>
                
                   </ul>
+                  <a href="https://drive.google.com/file/d/1wNSBzLihkc56ZYEGRNBgQhtNdpjDnbKQ/view?usp=sharing" download="BonsAtecedentes.pdf">Baixar Documento de Antecedentes Criminais</a>
+
                   <div style="text-align: center;" class="container ">
                     <br>
                     <hr><br>
@@ -114,13 +106,27 @@
                         <button type="submit" style="width: 50%;" class="btn btn-success">Contrate</button>
                       </form>
                       <% }else{ %>
-                        <h3 style="color: red;">Este cuidadoso ainda não foi aprovado</h3>
+                       
+
+                        <% if(TipoConta == 'Administrador'){ %>
+
+                          <form action="/AprovarCuidador" method="post">
+                            <h5 for="">Ao aprovar <%=userName %> será registrado como Administrador Responsavel</h5>
+                            <br>
+                            <input type="hidden" name="idcuidadoso" value="<%=cadastro.id %>">
+                            <input value="Aprovar Aspirante" type="submit" class="btn btn-outline-success">
+                          </form>
+
+                          <% } %>
+
+
+
+
                         <% } %>
 
 
                       <% }else{ %>
-                        <button style="width: 50%;" class="btn btn-outline-danger   ">Você não pode se
-                          contratar</button>
+                        <button style="width: 50%;" class="btn btn-outline-success    ">Conta Administradora</button>
                         <% } %>
                           <br><br>
                   </div>
@@ -136,56 +142,48 @@
         
         <br>
 
+        <div class="section-title">
+          
+        </div>
         <div style="background-color: #F3F5FA; display: block; width: 100vw;" class="container ">
           <div class="agenda">
             <div class="row gy-4 ">
 
-              <div class="form-group row-lg-12 ">
+              <% if(userId == cadastro.id){ %>
 
-                <div class="container " style="display: flex; text-align: center;">
+              <section id="portfolio" class="portfolio">
+                <div class="container" data-aos="fade-up">
 
+                 
+                  
+                  <div class="section-title">
+                    <h2>Cuidadosos Aspirantes</h2>
+                    <p>Este é um painel Administrativo</p>
+                  </div>
+          
+                  <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-                  <section id="services" class="services section-bg">
-                    <div class="section-title">
-                      <h4 style="text-align: center;">Agenda de <%=agenda.nome%>
-                    </div>
-                    <div class="container" >
-              
-              
-                      <div class="row rolagem">
-                      
-
-                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="10">
-                          
-                        <% for(let index = 1 ; index < agenda.dias+1 ; index++){ %>
+                    <%for(let index = 0; index < aspirantes.length; index++){%>
+          
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                      <div class="portfolio-img"><img src="data:image/jpeg;base64,<%=aspirantes[index].Foto %>" class="img-fluid" alt=""></div>
+                      <div class="portfolio-info">
+                        <h4><%=aspirantes[index].Nome %></h4>
                         
-                          <% if(index != diasagendados){ %>
-                            <button title="Dia Disponivel" class="btn btn-outline-success "><%=index %></button>
-                            <% }else{ %>
-                              <button title="Cuidadoso Ocupado" class="btn btn-danger  "><%=index %></button>
-                              <% } %>
-
-                          
-                          <% } %>
-
-                          
-                        </div>
-                        
-              
-                        
-                        </div>
-              
+                        <div class="container ">
+                        <a href="/Perfil/<%=aspirantes[index].id %>" class="details-link" title="Visualizar Perfil"><i class="bx bx-link"></i></a>
                       </div>
-              
+                      </div>
                     </div>
-                  </section><!-- End Services Section -->
-
-
+          
+                    <% } %>
+          
+                  </div>
+          
+          
                 </div>
-
-
-
-              </div>
+              </section><!-- End Portfolio Section -->
+          <% } %>
 
 
             </div>
@@ -321,30 +319,7 @@
 
       </main><!-- End #main -->
 
-      <!-- ======= Footer ======= -->
-      <%-include('partials/footer.ejs') %>
-        <!-- End Footer -->
 
-        <div id="preloader"></div>
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-        <!-- Vendor JS Files -->
-        <script src="/vendor/aos/aos.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="/vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="/vendor/waypoints/noframework.waypoints.js"></script>
-        <script src="/vendor/php-email-form/validate.js"></script>
-
-        <!-- Template Main JS File -->
-        <script src="/js/main.js"></script>
-
-  </body>
-
-</html>
     
 
 
-<% } %>

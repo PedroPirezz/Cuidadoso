@@ -24,7 +24,7 @@
                     <div class="container" data-aos="fade-up">
 
                         <div class="section-title">
-                            <h2>Contrato</h2>
+                            <h2>Enviar Solicitação</h2>
                             <p>Solicitação de Cuidadoso</p>
                         </div>
 
@@ -37,22 +37,11 @@
                                         <h4>localização:</h4><br><br>
                                         <h6>Localização para a realização do acompanhamento Cuidadoso</h6>
                                         <br>
-                                        <h4>Selecione:</h4>
+
+                                        
                                         <br>
 
-                                        <h5>Salvos:</h5>
-                                        <br>
-
-                                        <div class=" endsaves">
-
-                                            <select name="endereços" id="endsa" class="form-control ">
-                                                <option value=" Nº215, Praça Assunção, Centro, Nova-Lima, Minas Gerais">
-                                                    <p>Nº215, Praça Assunção, Centro, Nova-Lima, Minas Gerais</p>
-                                                </option>
-
-                                            </select>
-
-                                        </div>
+                                      
                                         <br><br>
                                         <h5>Cadastro de Endereço</h5>
                                         <br>
@@ -60,28 +49,29 @@
 
                                         <div style="display: none;" class="container divend">
 
-                                            <form action="/upload" method="POST" enctype="multipart/form-data">
-                                              <br>
-                                              <label >Estado</label><br>
-                                              <input class="form-control " type="text"><br>
-                                              <label >Cidade</label><br>
-                                              <input class="form-control "  type="text"><br>
-                                              <label >Rua</label><br>
-                                              <input class="form-control "  type="text"><br>
-                                              <label >Número</label><br>
-                                              <input class="form-control "  type="text"><br>
-                                              <label >Complemento</label><br>
-                                              <input class="form-control "  type="text"><br>
-                                              <label >Referencia</label><br>
-                                              <input class="form-control "  type="text">
-                        
-                                              <br><br>
-                                              <button class="btn btn-outline-primary " type="submit">Cadastrar</button>
-                                            </form><br>
-                        
-                                          </div><br>
-                                    </div>
+                                            <form action="/salvarendereco" method="POST" >
+                                                <br>
+                                                <label>Estado</label><br>
+                                                <input class="form-control " type="text" name="estado" required ><br>
+                                                <label>Cidade</label><br>
+                                                <input class="form-control " type="text" name="cidade"  required ><br>
+                                                <label>Rua</label><br>
+                                                <input class="form-control " type="text" name="rua"  required ><br>
+                                                <label>Número</label><br>
+                                                <input class="form-control " type="text" name="numero"  required ><br>
+                                                <label>Complemento</label><br>
+                                                <input class="form-control " type="text" name="complemento"  required ><br>
+                                                <label>Referencia</label><br>
+                                                <input class="form-control " type="text" name="referencia"  required >
+                                                <input type="hidden" name="idcontrato" value="<%=contratado.id %>">
 
+                                                <br><br>
+                                                <button class="btn btn-outline-primary "
+                                                    type="submit">Cadastrar</button>
+                                            </form><br>
+
+                                        </div><br>
+                                    </div>
 
 
 
@@ -90,47 +80,108 @@
                             </div>
 
                             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                                    <h4>Cuidadoso <%=contratado.Nome %></h4><br>
-                                    <div style="display: flex; justify-content: center;"> 
-                                        <img class="pessoa5" src="data:image/jpeg;base64,<%=contratado.FotoPerfil %>" alt="Imagem do Produto">
-                                        
+
+                               
+                                <form action="/Solicitar" method="post" role="form" class="php-email-form">
+
+                                    
+
+                                    <input type="hidden" name="CuidadosoID" value="<%=contratado.id %>">
+                                    <input type="hidden" name="EndSet" value= "23">
+
+                                    <h4>Cuidadoso <%=contratado.Nome %>
+                                    </h4><br>
+                                    <div style="display: flex; justify-content: center;">
+                                        <img class="pessoa5" src="data:image/jpeg;base64,<%=contratado.FotoPerfil %>"
+                                            alt="Imagem do Produto">
+
                                     </div><br><br>
                                     <div class="row">
-
-                                        
-                                    
-                                        
                                         <div class="form-group col-md-6">
                                             <label for="name">Dia</label><br>
                                             <select class="form-control " name="dia" id="">
                                                 <% for(let index=1 ; index < 32 ; index++){ %>
-                                                    <option style="color: green; text-align: center;" value="<%=index %>"><%=index %></option>
+                                                    <option style="color: green; text-align: center;"
+                                                        value="<%=index %>">
+                                                        <%=index %>
+                                                    </option>
                                                     <% } %>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="name">Email</label>
-                                            <input type="email" class="form-control" placeholder="Digite seu email"
-                                                name="email" id="email" required>
+                                            <label for="name">Horario Inicial</label>
+                                            <input type="time" class="form-control" placeholder="Inicio As" name="HoraInicio"  required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="name">Assunto</label>
-                                        <input type="text" class="form-control" placeholder="Descreva o assunto"
-                                            name="subject" id="subject" required>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="name">Possui Deficiência</label><br>
+                                            <select class="form-control" name="deficiencia" id="deficiencia">
+                                                <option style="color: green; text-align: center;" value="Não">Não
+                                                </option>
+                                                <option style="color: green; text-align: center;" value="Sim">Sim
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6" id="divDeficiencia" style="display:none;">
+                                            <label for="name">Informe a Deficiência</label>
+                                            <input type="text" class="form-control" placeholder="Deficiência"
+                                                name="Deficiencia" id="informeDeficiencia">
+                                        </div>
                                     </div>
+
+                                    <div class=" endsaves">
+
+                                        <label for="name">Escolha o endereco</label>
+
+                                        <select name="endsa" id="endsa" class="form-control ">
+
+                                           
+                                            <% for (var i = 0; i < enderecos.length; i++) { %>
+
+                                            <option value="<%=enderecos[i].id %>">
+                                                <p><%= enderecos[i].Rua %>, <%= enderecos[i].Numero %>, <%= enderecos[i].Cidade, enderecos[i].Estado %></p>
+
+
+
+                                            </option>
+
+                                            <% } %>
+
+                                        </select>
+
+                                         
+                                    </div><br>
+
+                                    <script>
+                                        document.getElementById('deficiencia').addEventListener('change', function () {
+                                            var divDeficiencia = document.getElementById('divDeficiencia');
+                                            if (this.value === 'Sim') {
+                                                divDeficiencia.style.display = 'block';
+                                            } else {
+                                                divDeficiencia.style.display = 'none';
+                                            }
+                                        });
+                                    </script>
+
+
                                     <div class="form-group">
                                         <label for="name">Mensagem</label>
-                                        <textarea class="form-control" placeholder="Descreva sua dúvida" name="message"
-                                            rows="10" required></textarea>
+                                        <textarea class="form-control" placeholder="Descreva sua dúvida"
+                                            name="Mensagem" rows="10" required></textarea>
                                     </div>
-                                    <div class="my-3">
-                                        <div class="loading">Loading</div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                                    </div>
-                                    <div class="text-center"><button type="submit">Forma de Pagamento</button></div>
+
+                                    <% if(enderecos.length != 0){ %>
+
+                                    <div class="text-center"><button type="submit">Enviar Solicitação</button></div>
+
+                                    <% }else{ %>
+
+                                        <div class="text-center"><button type="button" class="btn btn-danger ">Cadastre seu endereço</button></div>
+
+                                        <% } %>
+                                    
                                 </form>
                             </div>
 

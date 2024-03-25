@@ -40,6 +40,7 @@
               <a href="/contrate"><button class="btn btn-outline-secondary ">Exibir Todos</button></a>
               <button onclick="filtroestado()" class="btn btn-outline-secondary ">Exibir por Estados</button>
               <button onclick="filtrocidade()" class="btn btn-outline-secondary ">Exibir por Cidades</button>
+                
 
               <br><br>
 
@@ -66,7 +67,7 @@
               
               
                
-                
+             
 
                 <div style="display: none;" class="row filtrocidade box-icon">
                  
@@ -110,7 +111,6 @@
         
         
     
-
         <div class="row">
           
           <% if(cadastro.length==0){ %>
@@ -136,6 +136,7 @@
               <img class="pessoa" src="data:image/jpeg;base64, <%=cadastro[x].FotoPerfil%>" alt="Imagem do Produto">
               <br><br>
               <h5 style="text-align: center;"><%=cadastro[x].Cidade%></h5>
+              <h3 style="text-align: center; color: #209dd8;">R$<%=cadastro[x].Diaria %>,00</h3>
             </div>
           </div></a>
 
@@ -143,6 +144,9 @@
           
         </div><br><br>
 
+
+
+      
       
         
 
