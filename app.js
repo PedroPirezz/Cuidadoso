@@ -20,13 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
 // Importando arquivos de banco de dados
-const connection = require('./database/database');
-const Cadastros = require('./database/Cadastros');
-const Perfil = require('./database/Perfil');
-const Posts = require('./database/Posts');
-const Enderecos = require('./database/Enderecos');
-const Solicitacoes = require('./database/Solicitacoes');
-const Financeiro = require('./database/Financeiro');
+const connection = require('./Database/database');
+const Cadastros = require('./Database/Cadastros');
+const Posts = require('./Database/Posts');
+const Enderecos = require('./Database/Enderecos');
+const Solicitacoes = require('./Database/Solicitacoes');
+const Financeiro = require('./Database/Financeiro');
 
 // Configurando o Express para servir arquivos estáticos da pasta 'public'
 app.use(express.static('public'));
@@ -112,7 +111,7 @@ app.get('/', (req, res) => {
 
     Posts.findAll({ limit: 9, order: [['id', 'DESC']], raw: true }).then(posts => { //Estou fazendo uma busca no Banco de dados e trazendo os 9 primeiros posts
 
-        res.render('index.ejs', { posts: posts })
+        res.render('HomePage.ejs', { posts: posts })
 
     })
 })
@@ -121,7 +120,7 @@ app.get('/login', (req, res) => {
 
     let loginvar = 0 //Variavel que indica se o usuario está querendo fazer login ou cadastro
 
-    res.render('login.ejs', { loginvar: loginvar })
+    res.render('LoginPage.ejs', { loginvar: loginvar })
 })
 
 app.post('/validarlogin', (req, res) => { 
@@ -176,13 +175,10 @@ app.get('/contratar', testartoken, (req, res) => {
     let idCuidadoso = req.query.cuidadoso //Pegando o ID do Cuidadoso
     let idlogado = req.session.userId //Pegando o ID de quem está logado
 
-   
-    
-
     Cadastros.findOne({ where: { id: idCuidadoso } }).then(cuidadosocontratado => {  //Bucando o Cuidadoso que deseja contratar
         Enderecos.findAll({ where: { IDCadastro : idlogado } }).then(enderecos => { //Buscando os Endereços cadastrados de quem está logado
 
-        res.render('contratando', { contratado: cuidadosocontratado, enderecos: enderecos})
+        res.render('HireProfessionalPage.ejs', { contratado: cuidadosocontratado, enderecos: enderecos})
 
     })
     })
@@ -192,7 +188,7 @@ app.get('/CadastroValor', (req, res) => {
 
     let loginvar = 1 //Variavel que indica se o usuario está querendo fazer login ou cadastro
 
-    res.render('login.ejs', { loginvar: loginvar })
+    res.render('LoginPage.ejs', { loginvar: loginvar })
 })
 
 app.post('/NovaDiaria', testartoken, (req, res) => {
@@ -233,17 +229,7 @@ app.post('/salvarendereco',  testartoken,(req, res) => {
 app.get('/CadastroValor1', (req, res) => {
 
     let loginvar = 2
-    res.render('login.ejs', { loginvar: loginvar })
-})
-
-app.get('/Perfil', (req, res) => {
-
-
-
-    Perfil.findAll().then(perfis => {
-        res.render('Perfil.ejs', { perfis: perfis, })
-    })
-
+    res.render('LoginPage.ejs', { loginvar: loginvar })
 })
 
 app.post('/deletarpubli', testartoken, (req, res) => {
@@ -264,7 +250,7 @@ app.get('/Historico',testartoken, (req, res) => {
 let IDlogado = req.session.userId //Pegando o ID de quem está logado 
 
 Solicitacoes.findAll({where: { IDSolicitante: IDlogado }, order: [['createdAt', 'DESC']]}).then(minhassolicitacoes => { //Pegando todas as solicitações feitas por quem está logado
-    res.render('Historico.ejs', { minhassolicitacoes: minhassolicitacoes, logado:IDlogado }); // Renderizando o Historico
+    res.render('MyCareRequestsPage.ejs', { minhassolicitacoes: minhassolicitacoes, logado:IDlogado }); // Renderizando o Historico
   });
   
 })
@@ -275,7 +261,7 @@ app.get('/MeusServicos',testartoken, (req, res) => {
     
     
     Solicitacoes.findAll({where: {  IDCuidadoso: IDlogado}, order: [['createdAt', 'DESC']] }).then(minhassolicitacoes => { //Pegando todas as solicitações que solicitaram o Cuidadoso que esta logado
-        res.render('Historico.ejs', { minhassolicitacoes: minhassolicitacoes, logado:IDlogado });
+        res.render('JobOffersPage.ejs', { minhassolicitacoes: minhassolicitacoes, logado:IDlogado });
       });
       
     })
@@ -287,7 +273,7 @@ app.get('/Pagamento/:idservico', testartoken, (req, res) => {
 Solicitacoes.findOne({ where: { id: IDServico } }).then(minhassolicitacoes => { // Buscando a solicitação pelo ID para realizar o pagamento
     Financeiro.findOne({ where: { IDSolicitacao: IDServico } }).then(financeiro => { // Buscando o financeiro pelo ID da solicitação
 
-        res.render('Pagamento.ejs', { minhassolicitacoes: minhassolicitacoes, financeiro: financeiro });  // Renderizando o Pagamento
+        res.render('CheckoutPage.ejs', { minhassolicitacoes: minhassolicitacoes, financeiro: financeiro });  // Renderizando o Pagamento
     })
 })
 
@@ -377,7 +363,7 @@ app.get('/perfil/:id', (req, res) => {
 
                         Cadastros.findAll({ where: { TipoConta: 'CuidadosoAspirante' } }).then(aspirantes => { // Buscando todos os Aspirantes a Cuidadoso
                          
-                            res.render('Perfil.ejs', { cadastro: cadastro, posts: posts, agenda: mesesDoAno[numeroDoMesAtual], aspirantes: aspirantes })
+                            res.render('ProfilePage.ejs', { cadastro: cadastro, posts: posts, agenda: mesesDoAno[numeroDoMesAtual], aspirantes: aspirantes })
 
                         })
 
@@ -386,7 +372,7 @@ app.get('/perfil/:id', (req, res) => {
 
                         Solicitacoes.findAll({ raw: true, where: { IDCuidadoso: IDPerfil, StatusPedido: 'Solicitação Aceita' } }).then(solicitacoes => { // Buscando Solicitações Aceitas
 
-                        res.render('Perfil.ejs', { cadastro: cadastro, solicitacoes: solicitacoes, posts: posts, agenda: mesesDoAno[numeroDoMesAtual] }) // Renderizando
+                        res.render('ProfilePage.ejs', { cadastro: cadastro, solicitacoes: solicitacoes, posts: posts, agenda: mesesDoAno[numeroDoMesAtual] }) // Renderizando
                         
                     })
                     }
@@ -414,7 +400,7 @@ Solicitacoes.findOne({ where: { id: IDServico } }).then(servico => { // Verifica
             
         Financeiro.findOne({ where: { IDCuidadoso: IDLogado, Status: 'Pendente' } }).then(financeiro => { // Buscando o Financeiro pelo ID
             
-    res.render('servico.ejs', { servico: servico, cuidadoso: cuidadoso, logado: IDLogado, contratante: contratante, financeiro: financeiro }) // Renderizando
+    res.render('ServiceDetailsPage.ejs', { servico: servico, cuidadoso: cuidadoso, logado: IDLogado, contratante: contratante, financeiro: financeiro }) // Renderizando
     
 })
 })
@@ -427,12 +413,12 @@ app.get('/contrate', (req, res) => {
     let filtro = req.query.estado // Filtro por estado
     let cidade = req.query.cidade // Filtro por Cidade
 
-    Perfil.findAll({ raw: true }).then(fotos => { // Buscando todos os Perfis
+    
         if (filtro) { // Verificando se o filtro  de estado existe
             if (cidade) { // Verificando se o filtro de cidade existe
 
                 Cadastros.findAll({ where: { TipoConta: 'Cuidadoso', Estado: filtro, Cidade: cidade } }).then(cadastro => { //Buscando os Cuidadosos pelo estado e Cidade
-                    res.render('contrate.ejs', { fotos: fotos, cadastro: cadastro }) // Renderizando
+                    res.render('CuidadososListingPage.ejs', {  cadastro: cadastro }) // Renderizando
                 })
 
             } 
@@ -440,7 +426,7 @@ app.get('/contrate', (req, res) => {
             {
 
                 Cadastros.findAll({ where: { TipoConta: 'Cuidadoso', Estado: filtro } }).then(cadastro => { //Buscando os Cuidadosos pelo estado
-                    res.render('contrate.ejs', { fotos: fotos, cadastro: cadastro }) // Renderizando
+                    res.render('CuidadososListingPage.ejs', {  cadastro: cadastro }) // Renderizando
                 })
 
             }
@@ -449,11 +435,11 @@ app.get('/contrate', (req, res) => {
           {
             Cadastros.findAll({ where: { TipoConta: 'Cuidadoso' } }).then(cadastro => { //Buscando todos os Cuidadosos
                 module.exports = cadastro; // Exportando
-                res.render('contrate.ejs', { fotos: fotos, cadastro: cadastro }) // Renderizando
+                res.render('CuidadososListingPage.ejs', {  cadastro: cadastro }) // Renderizando
             })
         }
     })
-}) 
+
 
 app.post('/aceitarsolicitacao', testartoken, async (req, res) => {
  

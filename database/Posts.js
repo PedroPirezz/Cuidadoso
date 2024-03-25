@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const connection = require('./database.js')
-
 const Posts = connection.define('posts', {
 
     IDCadastro: {
@@ -24,15 +23,6 @@ const Posts = connection.define('posts', {
         allownull: false
     }
 })
-
-// const Respostas = connection.define('respostas', {
-
-
-// })
-
-
-
-
 
 
 Posts.sync({ force: false }).then(() => {

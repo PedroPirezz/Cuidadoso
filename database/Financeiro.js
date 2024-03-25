@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const connection = require('./database.js')
-
 const Financeiro = connection.define('financeiro', {
 
     IDCuidadoso: {
@@ -33,16 +32,6 @@ const Financeiro = connection.define('financeiro', {
     }
     
 })
-
-// const Respostas = connection.define('respostas', {
-
-
-// })
-
-
-
-
-
 
 Financeiro.sync({ force: false }).then(() => {
     console.log("tabela Financeira conectada")

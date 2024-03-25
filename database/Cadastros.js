@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const connection = require('./database.js')
-
 const Cadastros = connection.define('cadastros', {
 
     Nome: {
@@ -89,16 +88,6 @@ const Cadastros = connection.define('cadastros', {
         allowNull:true
     }
 })
-
-// const Respostas = connection.define('respostas', {
-
-
-// })
-
-
-
-
-
 
 Cadastros.sync({ force: false }).then(() => {
     console.log("tabela criada")

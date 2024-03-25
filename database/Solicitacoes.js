@@ -71,16 +71,6 @@ const Solicitacoes = connection.define('Solicitacoes', {
     
 })
 
-// const Respostas = connection.define('respostas', {
-
-
-// })
-
-
-
-
-
-
 Solicitacoes.sync({ force: false }).then(() => {
     console.log("tabela de Solicitacoes conectada")
 })

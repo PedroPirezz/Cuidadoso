@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const connection = require('./database.js')
-
 const Enderecos = connection.define('enderecos', {
 
     IDCadastro: {
@@ -32,13 +31,6 @@ const Enderecos = connection.define('enderecos', {
         allowNull: true
     }
 })
-
-
-
-
-
-
-
 
 Enderecos.sync({ force: false }).then(() => {
     console.log("tabela de Endereços conectada")

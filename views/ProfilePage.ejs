@@ -3,19 +3,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%-include('partials/head.ejs') %>
+<%-include('Partials/Head.ejs') %>
 
   <body>
 
     <!-- ======= Header ======= -->
-    <%-include('partials/header.ejs') %>
+    <%-include('Partials/Header.ejs') %>
       <!-- End Header -->
 
       
 
         <% if(TipoConta == 'Administrador'){ %>
 
-          <%-include('partials/admin.ejs') %>
+          <%-include('Partials/Admin.ejs') %>
 
             <% }else{ %>
 
@@ -427,7 +427,7 @@
       <% } %>
 
       <!-- ======= Footer ======= -->
-      <%-include('partials/footer.ejs') %>
+      <%-include('Partials/Footer.ejs') %>
         <!-- End Footer -->
 
         <div id="preloader"></div>
