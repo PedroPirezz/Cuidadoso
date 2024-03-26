@@ -112,17 +112,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/teste', (req, res) => {
-
-    Cadastros.findAll({ raw: true, where: { TipoConta: 'Cuidadoso' } }).then(cadastros => {
-        
- 
-
-        res.render('Teste.ejs', { cadastro: cadastros })
-
-    })
-})
-
 app.get('/login', (req, res) => {
 
     let loginvar = 0 //Variavel que indica se o usuario está querendo fazer login ou cadastro
@@ -444,7 +433,6 @@ app.get('/contrate', (req, res) => {
             })
         }
     })
-
 
 app.post('/aceitarsolicitacao', testartoken, async (req, res) => {
  
