@@ -26,9 +26,13 @@
 
         <div class="row">
 
-          <div  class="container">
-            <h4>Filtros <button class="tres"> <i onclick="divfiltros()" class="fas fa-ellipsis-v"></i></button></h4><br>
-
+          <div "  class="container row ">
+            <div class="col-lg-7">
+              <h4>Filtros <button class="tres"> <i onclick="divfiltros()" class="fas fa-ellipsis-v"></i></button></h4><br>
+            </div>
+            <div style="text-align: end" class="col-lg-5 ">
+              <input class="form-control " type="text" id="searchInput" onkeyup="search()" placeholder=" 🔎  Pesquisar por nome...">
+            </div>
 
           <div class="row">
            
@@ -63,12 +67,6 @@
                 
                
               </div>
-            
-              
-              
-               
-             
-
                 <div style="display: none;" class="row filtrocidade box-icon">
                  
                   <div class="form-group col-md-6">
@@ -96,11 +94,6 @@
                  
                 </div>
 
-
-                
-
-                
-              
             </div>
 
             </div>
@@ -111,7 +104,7 @@
         
         
     
-        <div class="row">
+        
           
           <% if(cadastro.length==0){ %>
            
@@ -121,53 +114,34 @@
             
             <% } %>
 
+            <ul class="row" id="searchResults">
+              <!-- Renderize os perfis aqui -->
+              <% cadastro.forEach(perfil => { %>
+                <div style="margin-top: 2%;" class="perfil col-lg-3 "> <!-- Adicionei a classe 'perfil' à div -->
           
-          <% for( let x = 0; x < cadastro.length; x++ ) { %>
-          
-          
-
-          <div style="margin-top: 2%;" class="col-xl-3 col-md-6 d-flex align-items-stretch perfis" data-aos="zoom-in" data-aos-delay="100">
-
-            
-            <a style="color: inherit;" href="/Perfil/<%=cadastro[x].id %>"> <div class="icon-box">
-             
-              <h4 style="text-align: center;"><%=cadastro[x].Nome%></h4>
-              <p style="opacity: 0%;">--------------------------------------------------------------------------</p>
-              <img class="pessoa" src="data:image/jpeg;base64, <%=cadastro[x].FotoPerfil%>" alt="Imagem do Produto">
-              <br><br>
-              <h5 style="text-align: center;"><%=cadastro[x].Cidade%></h5>
-              <h3 style="text-align: center; color: #209dd8;">R$<%=cadastro[x].Diaria %>,00</h3>
-            </div>
-          </div></a>
-
-          <% } %>
-          
-        </div><br><br>
+                  <a style="color: inherit;" href="/Perfil/<%=perfil.id %>"> <div class="icon-box">
+                    <h4 class="nome" style="text-align: center;"><%=perfil.Nome%></h4>
+                    <p style="opacity: 0%;">--------------------------------------------------------------------------</p>
+                    <img class="pessoa" src="data:image/jpeg;base64, <%=perfil.FotoPerfil%>" alt="Imagem do Produto">
+                    <br><br>
+                    <h5 style="text-align: center;"><%=perfil.Cidade%></h5>
+                    <h3 style="text-align: center; color: #209dd8;">R$<%=perfil.Diaria %>,00</h3>
+                  </div></a>
+                  
+                  <!-- Outras informações do perfil -->
+                  
+                </div>
+              <% }); %>
+            </ul>
+                      
 
 
+          <br><br>
 
-      
-      
-        
-
-        
-        
-       
-        
-       
-          
-          
-
-          
-         
-        
-        
 
       </div> 
       
     </section><!-- End Services Section -->
-
-  
 
   </main><!-- End #main -->
 
@@ -179,6 +153,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="/js/search.js"></script>
   <script src="/vendor/aos/aos.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/vendor/glightbox/js/glightbox.min.js"></script>

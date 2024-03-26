@@ -84,7 +84,6 @@ async function testartoken(req, res, next) {
     if (req.session.userId) {
         let usuario = req.session.userId
         let token = req.session.token
-        console.log(token)
 
         let user = await Cadastros.findOne({
             where: { id: usuario }
@@ -92,10 +91,7 @@ async function testartoken(req, res, next) {
 
         if (user != undefined) {
 
-            console.log(token + ' ------------------------ ' + user.Token)
-
             if (user.Token == token) {
-                console.log("DEU")
                 next();
             } else { res.redirect("/login") }
 
@@ -112,6 +108,17 @@ app.get('/', (req, res) => {
     Posts.findAll({ limit: 9, order: [['id', 'DESC']], raw: true }).then(posts => { //Estou fazendo uma busca no Banco de dados e trazendo os 9 primeiros posts
 
         res.render('HomePage.ejs', { posts: posts })
+
+    })
+})
+
+app.get('/teste', (req, res) => {
+
+    Cadastros.findAll({ raw: true, where: { TipoConta: 'Cuidadoso' } }).then(cadastros => {
+        
+ 
+
+        res.render('Teste.ejs', { cadastro: cadastros })
 
     })
 })
@@ -145,7 +152,7 @@ app.post('/validarlogin', (req, res) => {
                 
                 let token = bcrypt.hashSync(email, salt) // Gerando um token baseado no email
 
-                cadastros.update({ Token: token }).then(console.log("O Token " + cadastros.Nome+  " foi atualizado")) // Atualizando o token
+                cadastros.update({ Token: token }) // Atualizando o token
 
                 req.session.isLoggedIn = true; //Guardando na sessão que o usuário está logado
                 req.session.userName = cadastros.Nome; // Guardando na sessão o nome do usuário
@@ -157,11 +164,9 @@ app.post('/validarlogin', (req, res) => {
                 
             }
             else { //Se a senha estiver errada
-                console.log("Senha Incorreta")
                 res.redirect('/login')
             }
         } else { //Se o usuário não existir
-            console.log("Usuario Não encontrado")
             res.redirect('/login')
         }
 
@@ -648,7 +653,7 @@ app.post('/pago', testartoken, async (req, res) => {
 
 app.listen(80, function (erro) {
     if (erro) {
-        console.log("Ocorreu um erro!")
+        console.log("Ocorreu um erro ao iniciar o Servidor!")
     } else {
         console.log("Servidor iniciado com sucesso")
     }
