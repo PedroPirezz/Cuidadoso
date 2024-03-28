@@ -51,10 +51,16 @@
 
                                             <form action="/salvarendereco" method="POST" >
                                                 <br>
+                                             
+
                                                 <label>Estado</label><br>
-                                                <input class="form-control " type="text" name="estado" required ><br>
+                                                <select  class="form-control text-sm " name="estado" id="uf" required>
+                                                    <option disabled selected>Selecione seu Estado</option>
+                                                  </select><br>
                                                 <label>Cidade</label><br>
-                                                <input class="form-control " type="text" name="cidade"  required ><br>
+                                                <select class="form-control " name="cidade" id="city" required>
+                                                    <option  disabled selected>Selecione seu Estado</option>
+                                                  </select><br>
                                                 <label>Rua</label><br>
                                                 <input class="form-control " type="text" name="rua"  required ><br>
                                                 <label>Número</label><br>
@@ -96,16 +102,29 @@
                                             alt="Imagem do Produto">
 
                                     </div><br><br>
+                                   
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="name">Dia</label><br>
+                                            <label for="name">Dias Disponíveis de <%=mes %> </label><br>
                                             <select class="form-control " name="dia" id="">
-                                                <% for(let index=1 ; index < 32 ; index++){ %>
-                                                    <option style="color: green; text-align: center;"
-                                                        value="<%=index %>">
-                                                        <%=index %>
-                                                    </option>
+                                                <% for (let index = DiaDeHoje; index < diasMes; index++) { %>
+                                                    <% let disponivel = true; %>
+                                                    <% for (let i = 0; i < DiasIndisponieis.length; i++) { %>
+                                                        <% if (DiasIndisponieis[i].DiaAtendimento == index) { %>
+                                                            <% disponivel = false; %>
+                                                            <h6>Dia indisponível <%= DiasIndisponieis[i].DiaAtendimento %></h6>
+                                                            <% break; %> <!-- Não é necessário continuar verificando -->
+                                                        <% } %>
                                                     <% } %>
+                                                
+                                                    <% if (disponivel) { %>
+                                                        <option style="color: green; text-align: center;" value="<%= index %>">
+                                                            <%= index %>
+                                                        </option>
+                                                    <% } %>
+                                                <% } %>
+                                                
+
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -211,6 +230,7 @@
                         class="bi bi-arrow-up-short"></i></a>
 
                 <!-- Vendor JS Files -->
+                <script src="/js/select.js"></script>
                 <script src="/vendor/aos/aos.js"></script>
                 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                 <script src="/vendor/glightbox/js/glightbox.min.js"></script>

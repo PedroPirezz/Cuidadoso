@@ -18,9 +18,13 @@ const Solicitacoes = connection.define('Solicitacoes', {
     },
     DiaAtendimento: {
         type: Sequelize.INTEGER,  
-        allowNull: false
+        allowNull: false 
     },
     HoraAgendada: {
+        type: Sequelize.STRING, 
+        allowNull: true 
+    },
+    MesAgendado: {
         type: Sequelize.STRING, 
         allowNull: true 
     },  

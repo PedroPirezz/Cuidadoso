@@ -49,7 +49,7 @@ app.use(session({
 
 const mesesDoAno = {
     1: { nome: "Janeiro", dias: 31 },
-    2: { nome: "Fevereiro", dias: 28 }, // Pode atualizar este valor para 29 em anos bissextos
+    2: { nome: "Fevereiro", dias: 29 }, // Pode atualizar este valor para 29 em anos bissextos
     3: { nome: "Março", dias: 31 },
     4: { nome: "Abril", dias: 30 },
     5: { nome: "Maio", dias: 31 },
@@ -114,16 +114,18 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
 
-    let loginvar = 0 //Variavel que indica se o usuario está querendo fazer login ou cadastro
+    let Status = ""
 
-    res.render('LoginPage.ejs', { loginvar: loginvar })
+    res.render('LoginPage.ejs', { loginvar: 0, Status: Status })
 })
+
+
 
 app.post('/validarlogin', (req, res) => { 
 
     let email = req.body.email //Pegando as informações do formulário
     let senha = req.body.senha //Pegando as informações do formulário
-
+    let Status = ""
 
 
     const salt = bcrypt.genSaltSync(10) // Definindo a configuração do algoritmo de criptografia
@@ -153,10 +155,12 @@ app.post('/validarlogin', (req, res) => {
                 
             }
             else { //Se a senha estiver errada
-                res.redirect('/login')
+                Status = "Email ou Senha Incorretos"
+                res.render('LoginPage.ejs', { loginvar: 0, Status: Status })
             }
         } else { //Se o usuário não existir
-            res.redirect('/login')
+            Status = "Usuario não cadastrado"
+                res.render('LoginPage.ejs', { loginvar: 0, Status: Status })
         }
 
 
@@ -166,14 +170,25 @@ app.post('/validarlogin', (req, res) => {
 
 app.get('/contratar', testartoken, (req, res) => {
 
-    let idCuidadoso = req.query.cuidadoso //Pegando o ID do Cuidadoso
-    let idlogado = req.session.userId //Pegando o ID de quem está logado
+const hoje = new Date(); //Modulo de Data
+const DiaDeHoje = hoje.getDate(); //Pegando o dia de hoje
+var mesAtual = hoje.getMonth() + 1; // Pegando o mes de hoje
+var mes = mesesDoAno[mesAtual].nome; //Pegando o nome do mes
+var diasMes = mesesDoAno[mesAtual].dias; //Pegando os dias do mes
+let idCuidadoso = req.query.cuidadoso //Pegando o ID do Cuidadoso
+  let idlogado = req.session.userId //Pegando o ID de quem está logado
+
 
     Cadastros.findOne({ where: { id: idCuidadoso } }).then(cuidadosocontratado => {  //Bucando o Cuidadoso que deseja contratar
         Enderecos.findAll({ where: { IDCadastro : idlogado } }).then(enderecos => { //Buscando os Endereços cadastrados de quem está logado
+            Solicitacoes.findAll({ where: { IDCuidadoso: idCuidadoso, MesAgendado:mes } }).then(DiasIndisponieis => { //Buscando as solicitações feitas pelo Cuidadoso
 
-        res.render('HireProfessionalPage.ejs', { contratado: cuidadosocontratado, enderecos: enderecos})
+                for(let index = 0; index < DiasIndisponieis.length; index++){
+                    console.log("--------------------------" +DiasIndisponieis[index].DiaAtendimento)
+                }
 
+        res.render('HireProfessionalPage.ejs', { contratado: cuidadosocontratado, enderecos: enderecos, DiaDeHoje: DiaDeHoje, mes: mes, diasMes: diasMes, DiasIndisponieis: DiasIndisponieis })
+    })         
     })
     })
 })
@@ -485,6 +500,7 @@ app.post('/Solicitar', async (req, res) => {
 let dia = dataAtual.getDate();
 let mes = dataAtual.getMonth() + 1; 
 let ano = dataAtual.getFullYear();
+var NomeMes = mesesDoAno[mes].nome; //Pegando o nome do mes
 
 // Formatando para o formato desejado (DD/MM/AAAA)
 let dataFormatada = `${dia}/${mes}/${ano}`;
@@ -520,6 +536,7 @@ let dataFormatada = `${dia}/${mes}/${ano}`;
             IDCuidadoso: idcuidadoso,
             NomeCuidadoso: NomeCuidadoso,
             DiaAtendimento: DiaAtendimento,
+            MesAgendado: NomeMes,
             Deficiencia: Deficiencia,
             Mensagem: Mensagem,
             StatusPedido: Status,
