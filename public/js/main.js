@@ -415,13 +415,7 @@ function filtroestado(){
     div.style.display = "none";
 }
 
-
-
-
-
 }
-
-
 
 function filtrocidade(){
 

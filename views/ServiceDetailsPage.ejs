@@ -86,7 +86,7 @@
 
 <br><br>
               
-<% if(servico.StatusPedido == "Solicitação Pendente"){ %>
+<% if(servico.StatusPedido == "Solicitação Pendente"){ %>                <!-- Solicitação Pendente -->   
 
 
   <% if(logado == servico.IDSolicitante){ %>
@@ -154,7 +154,7 @@
 
      
 
-    <% } %>
+    <% } %> <!-- Solicitação Pendente -->   
 
   
 
@@ -191,10 +191,10 @@
 
     <% } %>
 
-  <% } %>
+  <% }else if(servico.StatusPedido == 'Solicitação Negada'){ %>
+    <h4  style="text-align: center; color: red;" style="text-align: center;">Cuidadoso Negou sua Solicitação</h4>
 
-
-              
+           <% } %>   
           </div>
 
         

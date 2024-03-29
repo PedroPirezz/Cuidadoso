@@ -183,10 +183,6 @@ let idCuidadoso = req.query.cuidadoso //Pegando o ID do Cuidadoso
         Enderecos.findAll({ where: { IDCadastro : idlogado } }).then(enderecos => { //Buscando os Endereços cadastrados de quem está logado
             Solicitacoes.findAll({ where: { IDCuidadoso: idCuidadoso, MesAgendado:mes } }).then(DiasIndisponieis => { //Buscando as solicitações feitas pelo Cuidadoso
 
-                for(let index = 0; index < DiasIndisponieis.length; index++){
-                    console.log("--------------------------" +DiasIndisponieis[index].DiaAtendimento)
-                }
-
         res.render('HireProfessionalPage.ejs', { contratado: cuidadosocontratado, enderecos: enderecos, DiaDeHoje: DiaDeHoje, mes: mes, diasMes: diasMes, DiasIndisponieis: DiasIndisponieis })
     })         
     })
@@ -212,6 +208,7 @@ app.post('/salvarendereco',  testartoken,(req, res) => {
 
     let Estado = req.body.estado //Pegando as informações do formulário
     let Cidade = req.body.cidade //Pegando as informações do formulário
+    let Bairro = req.body.bairro //Pegando as informações do formulário
     let Rua = req.body.rua  //Pegando as informações do formulário
     let Numero = req.body.numero //Pegando as informações do formulário
     let Complemento = req.body.complemento //Pegando as informações do formulário
@@ -224,7 +221,8 @@ app.post('/salvarendereco',  testartoken,(req, res) => {
         IDCadastro: idlogado,
         Estado: Estado,
         Cidade: Cidade,
-        Rua: Rua,
+        Bairro: Bairro,
+        Rua: Rua, 
         Numero: Numero,
         Complemento: Complemento,
         Referencia: Referencia,
@@ -543,6 +541,7 @@ let dataFormatada = `${dia}/${mes}/${ano}`;
             Valor: Valor,
             Estado: endereco.Estado,
             Cidade: endereco.Cidade,
+            Bairro:endereco.Bairro,
             Rua: endereco.Rua, 
             Numero: endereco.Numero,
             Complemento: endereco.Complemento,

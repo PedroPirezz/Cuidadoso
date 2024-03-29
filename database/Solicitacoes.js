@@ -52,6 +52,10 @@ const Solicitacoes = connection.define('Solicitacoes', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    Bairro: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     Rua: {
         type: Sequelize.STRING,
         allowNull: false

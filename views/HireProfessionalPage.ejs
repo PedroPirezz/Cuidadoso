@@ -61,6 +61,8 @@
                                                 <select class="form-control " name="cidade" id="city" required>
                                                     <option  disabled selected>Selecione seu Estado</option>
                                                   </select><br>
+                                                  <label>Bairro</label><br>
+                                                  <input class="form-control " type="text" name="bairro"  required ><br>
                                                 <label>Rua</label><br>
                                                 <input class="form-control " type="text" name="rua"  required ><br>
                                                 <label>Número</label><br>
@@ -160,7 +162,7 @@
                                             <% for (var i = 0; i < enderecos.length; i++) { %>
 
                                             <option value="<%=enderecos[i].id %>">
-                                                <p><%= enderecos[i].Rua %>, <%= enderecos[i].Numero %>, <%= enderecos[i].Cidade, enderecos[i].Estado %></p>
+                                                <p><%= enderecos[i].Rua %>, <%= enderecos[i].Numero %>,<%=enderecos[i].Bairro %>, <%= enderecos[i].Cidade, enderecos[i].Estado %></p>
 
 
 

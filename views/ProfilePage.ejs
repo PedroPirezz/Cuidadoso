@@ -104,11 +104,14 @@
 
                        
 
-                        <% if(cadastro.id==userId){ %>
+                        <% if(cadastro.id==userId && TipoConta=='Cuidadoso'){ %>
                             <button style="margin-left: 5%;" onclick="divft()" class="btn btn-outline-secondary   ">
                               Editar Foto Perfil
                             </button>
-                            <% } %>
+                            <% }else{ %>
+                              <h5><%=cadastro.Nome %></h5>
+
+                              <%  }%>
                            
                   </h3>
 
@@ -154,12 +157,17 @@
                   </ul>
                   <div style="text-align: center;" class="container ">
                     
-                    <h1>R$<%=cadastro.Diaria%>,00 
-                    <% if(cadastro.id == userId){ %>
+                    <% if(cadastro.id==userId && TipoConta=='Cliente'){ %>
+                    
+                      <%}else{ %>
+                        <h1>R$<%=cadastro.Diaria%>,00  </h1>
+                        <% } %>
+
+                    <% if(cadastro.id == userId && TipoConta=='Cuidadoso'){ %>
                       <button onclick="divdiaria()" class="pencil"><i class="fas fa-pencil-alt"></i></button>
 
                       <% } %>
-                    </h1>
+                   
 
                     <div style="display: none;" class="divdiaria">
                       <h4>Valor da sua Diaria</h4>
