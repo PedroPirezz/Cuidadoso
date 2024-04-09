@@ -97,15 +97,16 @@
 
                   <div style="text-align: center;" class="container ">
                     <br>
-                    <hr><br>
+                    <hr>
                     <% if(cadastro.id !=userId){ %>
 
                       <% if(cadastro.TipoConta=='Cuidadoso') {%>
                       <form action="/contratar">
                         <input type="hidden" name="cuidadoso" value="<%=cadastro.id %>">
+                        <h1>R$<%=cadastro.Diaria%>,00  </h1>
                         <button type="submit" style="width: 50%;" class="btn btn-success">Contrate</button>
                       </form>
-                      <% }else{ %>
+                      <% }else if(cadastro.TipoConta =='CuidadosoAspirante'){ %>
                        
 
                         <% if(TipoConta == 'Administrador'){ %>

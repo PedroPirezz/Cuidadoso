@@ -105,7 +105,7 @@ async function testartoken(req, res, next) {
 //ROTAS
 app.get('/', (req, res) => {
 
-    Posts.findAll({ limit: 9, order: [['id', 'DESC']], raw: true }).then(posts => { //Estou fazendo uma busca no Banco de dados e trazendo os 9 primeiros posts
+    Posts.findAll({ limit: 9, order: connection.random(), raw: true }).then(posts => { //Estou fazendo uma busca no Banco de dados e trazendo os 9 primeiros posts
 
         res.render('HomePage.ejs', { posts: posts })
 
@@ -424,7 +424,7 @@ app.get('/contrate', (req, res) => {
         if (filtro) { // Verificando se o filtro  de estado existe
             if (cidade) { // Verificando se o filtro de cidade existe
 
-                Cadastros.findAll({ where: { TipoConta: 'Cuidadoso', Estado: filtro, Cidade: cidade } }).then(cadastro => { //Buscando os Cuidadosos pelo estado e Cidade
+                Cadastros.findAll({ where: { TipoConta: 'Cuidadoso', Estado: filtro, Cidade: cidade }, order: connection.random() }).then(cadastro => { //Buscando os Cuidadosos pelo estado e Cidade
                     res.render('CuidadososListingPage.ejs', {  cadastro: cadastro }) // Renderizando
                 })
 
@@ -432,7 +432,7 @@ app.get('/contrate', (req, res) => {
             else // Se o filtro de Cidade não existir
             {
 
-                Cadastros.findAll({ where: { TipoConta: 'Cuidadoso', Estado: filtro } }).then(cadastro => { //Buscando os Cuidadosos pelo estado
+                Cadastros.findAll({ where: { TipoConta: 'Cuidadoso', Estado: filtro }, order: connection.random() }).then(cadastro => { //Buscando os Cuidadosos pelo estado
                     res.render('CuidadososListingPage.ejs', {  cadastro: cadastro }) // Renderizando
                 })
 
@@ -440,7 +440,7 @@ app.get('/contrate', (req, res) => {
         }
          else // Se não existir o filtro
           {
-            Cadastros.findAll({ where: { TipoConta: 'Cuidadoso' } }).then(cadastro => { //Buscando todos os Cuidadosos
+            Cadastros.findAll({ where: { TipoConta: 'Cuidadoso' }, order: connection.random() }).then(cadastro => { //Buscando todos os Cuidadosos
                 module.exports = cadastro; // Exportando
                 res.render('CuidadososListingPage.ejs', {  cadastro: cadastro }) // Renderizando
             })

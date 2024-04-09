@@ -109,7 +109,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="name">Dias Disponíveis de <%=mes %> </label><br>
                                             <select class="form-control " name="dia" id="">
-                                                <% for (let index = DiaDeHoje; index < diasMes; index++) { %>
+                                                <% for (let index = DiaDeHoje; index <= diasMes; index++) { %>
                                                     <% let disponivel = true; %>
                                                     <% for (let i = 0; i < DiasIndisponieis.length; i++) { %>
                                                         <% if (DiasIndisponieis[i].DiaAtendimento == index) { %>
