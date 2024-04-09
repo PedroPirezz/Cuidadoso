@@ -79,9 +79,11 @@
               <h6><label style=" color: #209dd8;">Solicitação enviada no dia:  </label><%=servico.DataCriacao %></h6>
               <h6><label style=" color: #209dd8;">Agendado para o Dia:</label> <%=servico.DiaAtendimento %></h6>
               <h6><label style=" color: #209dd8;">Hora de chegada do cuidador: </label> <%=servico.HoraAgendada %></h6>
-              <h6><label style=" color: #209dd8;">Local:  </label> <%=servico.Rua %>, <%=servico.Cidade %>, <%=servico.Estado %></h6>
-              <h6><label style=" color: #209dd8;">Mensagem Enviada: </label> <%=servico.Mensagem %></h6>
-              <h6><label style=" color: #209dd8;">Solicitante com Deficiêcia : </label> <%=servico.Deficiencia %></h6>
+              <h6><label style=" color: #209dd8;">Local:  </label> <%=servico.Rua %>, <%=servico.Cidade %>, <%=servico.Estado %></h6><br>
+
+              <h5 >Observações</h5>
+              <h6><label style=" color: #209dd8;">Mensagem Enviada: </label> <%=servico.Mensagem %></h6><br>
+              <h6><label style=" color: #209dd8;">Solicitante com Deficiêcia : </label> <%=servico.Deficiencia %></h6><br>
               <h6><label style=" color: #209dd8;">Valor do Serviço: R$ </label> <%=servico.Valor %>,00</h6>
 
 <br><br>
@@ -200,9 +202,69 @@
         
 
           
+<div class="container ">
+  <div class="section-title"><br><br> 
+    <h2>Chat</h2>
+    <h5>Converse com <%=servico.NomeCuidadoso %></h5><br><br>
 
-        
+    <div class="container ">
 
+      <div class="row">
+
+        <div  class=" col col-lg-1 ">
+          <a href=""><i class="fas fa-user-circle fa-2x"></i></a>
+        </div>
+        <div  class=" col col-lg-3 ">
+          <p style="text-align: left; margin-top: 2%; margin-left: -10%;  color: #209dd8">Lucas Silva</p>
+        </div>
+        <div  style="width: 70%; text-align: left;"  >
+          <p style="margin-left: 9%;">Ola tudo bem</p>
+        </div>
+
+
+      </div>
+
+      <div  class="row">
+
+        <div  class=" col col-lg-11 ">
+          <p style="text-align: right;; margin-top: 0.3%; margin-left: -10%;  color: #209dd8">Pedro Pirezz</p>
+         
+        </div>
+        <div  class=" col col-lg-1 ">
+          <a href=""><i class="fas fa-user-circle fa-2x"></i></a>
+        </div>
+        <div  style="margin-left: -8%; text-align: right; "  >
+          <p style="margin-left: 9%;">Ola tudo bem</p>
+        </div>
+
+      </div>
+
+
+
+    </div>
+          
+  </div>
+
+</div>
+<br><br>
+<div  class="container justify-content-center ">
+<form action="">
+  <div class="row">
+<div style="justify-content: end;" class="col col-lg-9 ">
+  <input style="margin-left: 20%;" type="text" class="form-control col-md-10 rounded-5 " placeholder ="Escreva sua mensagem">
+</div>
+<div    class="col col-lg2">
+  <a class="btn btn-primary rounded-5 "> <i class="bi bi-arrow-right-short"></i> </a>
+
+</div>
+
+
+
+
+
+</div>
+</form>
+</div>
          
 
 

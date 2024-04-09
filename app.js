@@ -26,6 +26,7 @@ const Posts = require('./Database/Posts');
 const Enderecos = require('./Database/Enderecos');
 const Solicitacoes = require('./Database/Solicitacoes');
 const Financeiro = require('./Database/Financeiro');
+const Chat = require('./Database/Chat');
 
 // Configurando o Express para servir arquivos estáticos da pasta 'public'
 app.use(express.static('public'));
@@ -486,8 +487,11 @@ app.post('/UploadFTPerfil', upload.single('imagem'), async (req, res) => {
     const imagem = req.file.buffer; // Dados binários da imagem
     const certo = imagem.toString('base64')// Codificando a imagem
 
-    Cadastros.update({ FotoPerfil: certo }, { where: { id: IDPerfil } }) // Atualizando a imagem no BD
-    res.redirect('/contrate') // Redirecionando para o perfil
+    Cadastros.update({ FotoPerfil: certo }, { where: { id: IDPerfil } }).then(
+
+     // Atualizando a imagem no BD
+    res.redirect('/perfil/' + IDPerfil + '') // Redirecionando para o perfil
+    )
 })
 
 app.post('/Solicitar', async (req, res) => {
