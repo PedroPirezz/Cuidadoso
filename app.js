@@ -103,7 +103,7 @@ async function testartoken(req, res, next) {
         res.redirect("/login")
 }
 
-    
+
 
 //ROTAS
 app.get('/', (req, res) => {
@@ -356,7 +356,7 @@ app.post('/cadastrocuidadoso', (req, res) => {
                         Celular: celular, FotoPerfil: imagemBuffer
                     })
 
-                    res.redirect('/') // Redirecionando para a Home
+                    res.redirect('/login') // Redirecionando para a Home
 
                 }
                 else {  // Se o estado foi selecionado e porque o tipo de cadastro e de Cuidadoso
@@ -366,7 +366,7 @@ app.post('/cadastrocuidadoso', (req, res) => {
                         Numero: numero, Complemento: complemento, Referencia: referencia, descricao: descricao
                     })
 
-                    res.redirect('/')
+                    res.redirect('/login')
 
                 }
             }
