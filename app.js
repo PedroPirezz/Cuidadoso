@@ -66,10 +66,10 @@ const mesesDoAno = {
 // Conectando ao banco de dados
 connection .authenticate()
     .then(() => {
-        console.log("Conexão realizada com SUCESSO Com o Banco de Dados")
+        console.log("Database connected with SUCCESS!")
     })
     .catch((msgErr) => {
-        console.log("ERRO NA CONEXÃO COM O BANCO DE DADOS")
+        console.log("Datatabase connexion ERROR: ")
     })
 
 app.use((req, res, next) => {
@@ -103,6 +103,8 @@ async function testartoken(req, res, next) {
         res.redirect("/login")
 }
 
+    
+
 //ROTAS
 app.get('/', (req, res) => {
 
@@ -119,8 +121,6 @@ app.get('/login', (req, res) => {
 
     res.render('LoginPage.ejs', { loginvar: 0, Status: Status })
 })
-
-
 
 app.post('/validarlogin', (req, res) => { 
 
@@ -203,6 +203,30 @@ app.post('/NovaDiaria', testartoken, (req, res) => {
     let perfil = req.body.idperfil //Peganod o id do perfil do Cuidadoso
 
     Cadastros.update({ Diaria: novadiaria }, { where: { id: perfil } }).then(res.redirect(`/perfil/${perfil}`)) //Atualizando o valor cobrado pelo Cuidadoso
+})
+
+app.post('/EnviarMensagem', testartoken, (req, res) => {
+
+    let Mensagem = req.body.Mensagem 
+    let IDRemetente = req.body.IDRemetente
+    let IDServico = req.body.IDServico
+    let dataAtual = new Date().toLocaleDateString('pt-BR') 
+    let horarioAtual = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) 
+ 
+
+    Chat.create({
+
+        IDRemente: IDRemetente,
+        NomeRemetente: req.session.userName,
+        IDServico: IDServico,
+        Mensagem: Mensagem,
+        Data: dataAtual,
+        Horario: horarioAtual,
+        Status: "Enviado",
+     })
+
+    res.redirect('/servico/' + IDServico)
+
 })
 
 app.post('/salvarendereco',  testartoken,(req, res) => {
@@ -397,8 +421,11 @@ app.get('/perfil/:id', (req, res) => {
 
 app.get('/Servico/:id', testartoken, (req, res) => {
 
+    
+
     let IDLogado = req.session.userId // ID de quem está logado
     let IDServico = req.params.id // ID do Servico
+    IdentificarServico(IDServico)
     
 Solicitacoes.findOne({ where: { id: IDServico } }).then(servico => { // Verificando se o Servico existe
 
@@ -407,9 +434,11 @@ Solicitacoes.findOne({ where: { id: IDServico } }).then(servico => { // Verifica
         Cadastros.findOne({ where: { id: IDLogado } }).then(contratante => { // Buscando o Contratante pelo ID
             
         Financeiro.findOne({ where: { IDCuidadoso: IDLogado, Status: 'Pendente' } }).then(financeiro => { // Buscando o Financeiro pelo ID
+
+            Chat.findAll({ where: { IDServico: IDServico }, order: [['id', 'ASC']] }).then(chat => { // Buscando o Chat pelo ID do Servico
             
-    res.render('ServiceDetailsPage.ejs', { servico: servico, cuidadoso: cuidadoso, logado: IDLogado, contratante: contratante, financeiro: financeiro }) // Renderizando
-    
+    res.render('ServiceDetailsPage.ejs', { servico: servico, cuidadoso: cuidadoso, logado: IDLogado, contratante: contratante, financeiro: financeiro, chat: chat }) // Renderizando
+            })
 })
 })
 })

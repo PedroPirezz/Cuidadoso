@@ -207,37 +207,46 @@
     <h2>Chat</h2>
     <h5>Converse com <%=servico.NomeCuidadoso %></h5><br><br>
 
-    <div class="container ">
+    <div   class="container ">
 
-      <div class="row">
-
-        <div  class=" col col-lg-1 ">
-          <a href=""><i class="fas fa-user-circle fa-2x"></i></a>
-        </div>
-        <div  class=" col col-lg-3 ">
-          <p style="text-align: left; margin-top: 2%; margin-left: -10%;  color: #209dd8">Lucas Silva</p>
-        </div>
-        <div  style="width: 70%; text-align: left;"  >
-          <p style="margin-left: 9%;">Ola tudo bem</p>
-        </div>
+      <% for(let index = 0; index < chat.length; index++) {%>
 
 
-      </div>
+        <% if(logado == chat[index].IDRemente){ %>
 
-      <div  class="row">
+          <div  class="row">  <!--  div das mensagens que estou Mandando-->
 
-        <div  class=" col col-lg-11 ">
-          <p style="text-align: right;; margin-top: 0.3%; margin-left: -10%;  color: #209dd8">Pedro Pirezz</p>
-         
-        </div>
-        <div  class=" col col-lg-1 ">
-          <a href=""><i class="fas fa-user-circle fa-2x"></i></a>
-        </div>
-        <div  style="margin-left: -8%; text-align: right; "  >
-          <p style="margin-left: 9%;">Ola tudo bem</p>
-        </div>
+            <div  class=" col col-lg-11 ">
+              <p style="text-align: right;; margin-top: 0.3%; margin-left: -10%;  color: #209dd8"><%=chat[index].NomeRemetente %></p> 
+             
+            </div>
+            <div  class=" col col-lg-1 ">
+              <a href=""><i class="fas fa-user-circle fa-2x"></i></a>
+            </div>
+            <div  style="margin-left: -8%; text-align: right; "  >
+              <p style="margin-left: 9%;"><%=chat[index].Mensagem %></p>
+            </div>
+    
+          </div>
 
-      </div>
+
+          <% }else{ %>
+            <div  class="row"><!--  div das mensagens que estou recebendo -->
+              <div  class=" col col-lg-1 ">
+                <a href=""><i class="fas fa-user-circle fa-2x"></i></a>
+              </div>
+              <div  class=" col col-lg-3 ">
+                <p style="text-align: left; margin-top: 2%; margin-left: -10%;  color: #209dd8"><%=chat[index].NomeRemetente %></p>
+              </div>
+              <div  style="width: 70%; text-align: left;"  >
+                <p style="margin-left: 9%;"><%=chat[index].Mensagem %></p>
+              </div>
+            </div>
+            <% } %>
+        <% } %>
+      
+
+    
 
 
 
@@ -247,21 +256,20 @@
 
 </div>
 <br><br>
+
+
 <div  class="container justify-content-center ">
-<form action="">
+<form action="/EnviarMensagem" method="post">
   <div class="row">
 <div style="justify-content: end;" class="col col-lg-9 ">
-  <input style="margin-left: 20%;" type="text" class="form-control col-md-10 rounded-5 " placeholder ="Escreva sua mensagem">
+  <input style="margin-left: 20%;" name="Mensagem" type="text" class="form-control col-md-10 rounded-5 "  placeholder ="Escreva sua mensagem">
 </div>
 <div    class="col col-lg2">
-  <a class="btn btn-primary rounded-5 "> <i class="bi bi-arrow-right-short"></i> </a>
-
+  <input type="hidden" name="IDServico" value="<%=servico.id%>">
+  <input type="hidden" name="IDRemetente" value="<%=userId%>">
+  <input type="hidden" name="NomeRemetente" value="<%=userName%>">
+<input type="submit" class="btn btn-primary rounded-5 " value="Enviar">
 </div>
-
-
-
-
-
 </div>
 </form>
 </div>

@@ -3,28 +3,20 @@ const connection = require('./database.js')
 const Chat = connection.define('chat', {
 
 
-    IDRemetente: {
-        type: Sequelize.INTEGER,
+    IDRemente: {  
+        type: Sequelize.INTEGER, 
         allownull: false
     },
-    IDServico: {
-        type: Sequelize.INTEGER,
+    NomeRemetente: {  
+        type: Sequelize.STRING, 
         allownull: false
     },
-    IDSolicitante: {
-        type: Sequelize.INTEGER,
+    Mensagem: {  
+        type: Sequelize.TEXT, 
         allownull: false
     },
-    NomeSolicitante: {
-        type: Sequelize.STRING,
-        allownull: false
-    },
-    IDCuidadoso: {
-        type: Sequelize.INTEGER,
-        allownull: false
-    },
-    NomeCuidadoso: {
-        type: Sequelize.STRING,
+    IDServico: {  
+        type: Sequelize.INTEGER, 
         allownull: false
     },
     Data: {  
@@ -43,7 +35,7 @@ const Chat = connection.define('chat', {
 })
 
 Chat.sync({ force: false }).then(() => {
-    console.log("tabela chat conectada")
+    console.log("Chat table connected with success")
 })
 
 module.exports = Chat

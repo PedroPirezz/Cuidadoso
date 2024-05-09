@@ -90,7 +90,7 @@ const Cadastros = connection.define('cadastros', {
 })
 
 Cadastros.sync({ force: false }).then(() => {
-    console.log("tabela criada")
+    console.log("Users table connected with success")
 })
 
 module.exports = Cadastros

@@ -34,7 +34,7 @@ const Financeiro = connection.define('financeiro', {
 })
 
 Financeiro.sync({ force: false }).then(() => {
-    console.log("tabela Financeira conectada")
+    console.log("Finances table connected with success")
 })
 
 module.exports = Financeiro

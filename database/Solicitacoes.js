@@ -80,7 +80,7 @@ const Solicitacoes = connection.define('Solicitacoes', {
 })
 
 Solicitacoes.sync({ force: false }).then(() => {
-    console.log("tabela de Solicitacoes conectada")
+    console.log("Solicitations table connected with success")
 })
 
 module.exports = Solicitacoes

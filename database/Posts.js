@@ -26,7 +26,7 @@ const Posts = connection.define('posts', {
 
 
 Posts.sync({ force: false }).then(() => {
-    console.log("tabela de Post conectada")
+    console.log("Posts table connected with success")
 })
 
 module.exports = Posts

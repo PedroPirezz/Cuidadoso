@@ -37,7 +37,7 @@ const Enderecos = connection.define('enderecos', {
 })
 
 Enderecos.sync({ force: false }).then(() => {
-    console.log("tabela de Endereços conectada")
+    console.log("Adress table connected with success")
 })
 
 module.exports = Enderecos
