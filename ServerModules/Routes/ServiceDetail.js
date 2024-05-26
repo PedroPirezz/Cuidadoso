@@ -12,6 +12,8 @@ router.get('/Servico/:id',  (req, res) => {
 
     DB.Solicitacoes.findOne({ where: { id: IDServico } }).then(servico => {
 
+     
+
         DB.Cadastros.findOne({ where: { id: servico.IDCuidadoso } }).then(cuidadoso => {
 
             DB.Cadastros.findOne({ where: { id: IDLogado } }).then(contratante => {

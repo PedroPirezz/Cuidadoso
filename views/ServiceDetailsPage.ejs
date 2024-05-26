@@ -97,12 +97,12 @@
 
 
     <% }else if(logado == servico.IDCuidadoso){ %>
-
+ 
       <h4  style="text-align: center; color: #3C4C69;" style="text-align: center;">Valor da Taxa: R$ <%= (servico.Valor * 0.1).toFixed(2) %></h4><br>
-
+  
 
       <% if(financeiro){ %>
-        <% if(servico.id != financeiro.IDSolicitacao){ %>
+        <% if(servico.id != financeiro.IDSolicitacao){ %> 
         <hr><br><br>
           <h4  style="text-align: center; color: #3C4C69;" style="text-align: center;">Você tem pendencias financeiras, <a href="/servico/<%=financeiro.IDSolicitacao%>">Veja aqui</a></h4><br>
           <h5 style="text-align: center;">Você não pode aceitar esta solicitação</h5>
@@ -262,7 +262,7 @@
 <form action="/EnviarMensagem" method="post">
   <div class="row">
 <div style="justify-content: end;" class="col col-lg-9 ">
-  <input style="margin-left: 20%;" name="Mensagem" type="text" class="form-control col-md-10 rounded-5 "  placeholder ="Escreva sua mensagem">
+  <input style="margin-left: 20%;" name="Mensagem" type="text" class="form-control col-md-10 rounded-5 " required  placeholder ="Escreva sua mensagem">
 </div>
 <div    class="col col-lg2">
   <input type="hidden" name="IDServico" value="<%=servico.id%>">
