@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Thanks for downloading this template!",
   "main": "index.js",
+  "vercel-build": "npx prisma migrate deploy",
   "scripts": {
     "start": "nodemon app.js"
   },
