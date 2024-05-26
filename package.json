@@ -1,13 +1,12 @@
 {
   "name": "cuidadoso",
   "version": "1.0.0",
-  "description": "Thanks for downloading this template!",
-  "main": "index.js",
-  "vercel-build": "npx prisma migrate deploy",
+  "main": "Homepage.ejs",
+  
   "scripts": {
     "start": "nodemon app.js"
   },
-  "author": "Pedro",
+  "author": "PedroPirezz",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.5.0",
