@@ -1,7 +1,6 @@
 // Importação dos módulos necessários
 const express = require('express'); // Framework web
 const bodyParser = require('body-parser'); // Middleware para parsing do corpo das requisições
-const axios = require('axios'); // Biblioteca para requisições HTTP
 const multer = require('multer'); // Middleware para upload de arquivos
 const session = require("express-session"); // Middleware para gerenciamento de sessões
 const { Op, where } = require('sequelize'); // Operadores do Sequelize
@@ -81,9 +80,9 @@ exports.testartoken = testartoken;
 const NodeRoutes = require('./ServerModules/Dependences/RoutesDependences');
 
 // Configuração das rotas
+app.get('/', NodeRoutes.Home);
 app.get('/login', NodeRoutes.Login);
 app.get('/logout', NodeRoutes.Logout);
-app.get('/', NodeRoutes.Home);
 app.get('/perfil/:id', NodeRoutes.ProfilePage);
 app.post('/validarlogin', NodeRoutes.AuthLogin);
 app.post('/cadastrocuidadoso', NodeRoutes.ProfessionalRegister);

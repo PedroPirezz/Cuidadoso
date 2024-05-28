@@ -51,4 +51,4 @@ router.post('/validarlogin', (req, res) => {
     });
 
 });
- module.exports = router
+module.exports = router
