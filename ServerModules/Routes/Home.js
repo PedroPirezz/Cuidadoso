@@ -9,6 +9,6 @@ router.get('/', (req, res) => {
       res.render('HomePage.ejs', { posts: posts })
 
   })
-})
+}) 
 
 module.exports = router

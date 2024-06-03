@@ -57,27 +57,13 @@ app.use((req, res, next) => {
     next();
 });
 
-// Função para testar o token de sessão
-async function testartoken(req, res, next) {
-    if (req.session.userId) {
-        let usuario = req.session.userId;
-        let token = req.session.token;
-
-        let user = await DB.Cadastros.findOne({ where: { id: usuario } });
-
-        if (user && user.Token == token) {
-            next();
-        } else {
-            res.redirect("/login");
-        }
-    } else {
-        res.redirect("/login");
-    }
-}
-exports.testartoken = testartoken;
 
 // Importação das rotas
 const NodeRoutes = require('./ServerModules/Dependences/RoutesDependences');
+
+//Importação das Funções
+const CheckToken = require('./ServerModules/Functions/CheckToken');
+
 
 // Configuração das rotas
 app.get('/', NodeRoutes.Home);
@@ -87,24 +73,24 @@ app.get('/perfil/:id', NodeRoutes.ProfilePage);
 app.post('/validarlogin', NodeRoutes.AuthLogin);
 app.post('/cadastrocuidadoso', NodeRoutes.ProfessionalRegister);
 app.get('/contrate', NodeRoutes.ProfessionalListing);
-app.get('/contratar', testartoken, NodeRoutes.HiringProfessional);
-app.post('/EnviarMensagem', testartoken, NodeRoutes.SendMensage);
-app.post('/pago', testartoken, NodeRoutes.PaidRequest);
-app.get('/servico/:id', testartoken, NodeRoutes.ServiceDetail);
-app.get('/Pagamento/:idservico', testartoken, NodeRoutes.ServicePayment);
-app.post('/aceitarsolicitacao', testartoken, NodeRoutes.AcceptRequest);
-app.post('/solicitar', testartoken, NodeRoutes.ServiceSolicition);
-app.get('/MeusServicos', testartoken, NodeRoutes.MyServices);
-app.get('/Historico', testartoken, NodeRoutes.HistoricServices);
-app.post('/deletarpubli', testartoken, NodeRoutes.DeletePublication);
-app.post('/negarsolicitacao', testartoken, NodeRoutes.DenyRequest);
-app.post('/UploadFTPerfil', testartoken, NodeRoutes.UploadPhotoProfile);
-app.post('/uploadpost', testartoken, NodeRoutes.NewPost);
-app.post('/updatepost', testartoken, NodeRoutes.UpdatePost);
-app.post('/updatedescri', testartoken, NodeRoutes.UpdateDescription);
-app.post('/salvarendereco', testartoken, NodeRoutes.SaveNewAddress);
-app.post('/AprovarCuidador', testartoken, NodeRoutes.ApproveProfessional);
-app.post('/NovaDiaria', testartoken, NodeRoutes.NewValueDaily);
+app.get('/contratar', CheckToken, NodeRoutes.HiringProfessional);
+app.post('/EnviarMensagem', CheckToken, NodeRoutes.SendMensage);
+app.post('/pago', CheckToken, NodeRoutes.PaidRequest);
+app.get('/servico/:id', CheckToken, NodeRoutes.ServiceDetail);
+app.get('/Pagamento/:idservico', CheckToken, NodeRoutes.ServicePayment);
+app.post('/aceitarsolicitacao', CheckToken, NodeRoutes.AcceptRequest);
+app.post('/solicitar', CheckToken, NodeRoutes.ServiceSolicition);
+app.get('/MeusServicos', CheckToken, NodeRoutes.MyServices);
+app.get('/Historico', CheckToken, NodeRoutes.HistoricServices);
+app.post('/deletarpubli', CheckToken, NodeRoutes.DeletePublication);
+app.post('/negarsolicitacao', CheckToken, NodeRoutes.DenyRequest);
+app.post('/UploadFTPerfil', CheckToken, NodeRoutes.UploadPhotoProfile);
+app.post('/uploadpost', CheckToken, NodeRoutes.NewPost);
+app.post('/updatepost', CheckToken, NodeRoutes.UpdatePost);
+app.post('/updatedescri', CheckToken, NodeRoutes.UpdateDescription);
+app.post('/salvarendereco', CheckToken, NodeRoutes.SaveNewAddress);
+app.post('/AprovarCuidador', CheckToken, NodeRoutes.ApproveProfessional);
+app.post('/NovaDiaria', CheckToken, NodeRoutes.NewValueDaily);
 app.get('/CadastroValor', NodeRoutes.UndefinedRouteA);
 app.get('/CadastroValor1', NodeRoutes.UndefinedRouteA);
 
