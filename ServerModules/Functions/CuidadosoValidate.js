@@ -5,8 +5,8 @@ function CuidadosoValidade(req, res, next) {
   
   DB.Cadastros.findOne({ where: { id: Logged } }).then(Register => {
 
-    if (Register.TipoConta == 'Cuidadoso') {
-      next();
+    if (Register.TipoConta == 'Cuidadoso' || Register.TipoConta == 'Administrador') {
+      next(); 
     }
     else {
       res.redirect('/');

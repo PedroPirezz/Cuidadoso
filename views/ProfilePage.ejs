@@ -390,9 +390,10 @@
                         class="btn  ">        <i class="bi bi-gear text-white "></i> </button>
                     
 
-                    <form action="/deletarpubli" method="post"><input type="hidden" name="idperfi"
-                      value="<%=cadastro.id %>"><input type="hidden" name="id" value="<%=posts[index].id %>"><button title="Deletar Publicação"
-                      class="btn   "><i class="bi bi-trash text-white"></i></button></form>
+                    <form action="/deletarpubli" method="post">
+                      <input type="hidden" name="idperfil" value="<%=cadastro.id %>">
+                      <input type="hidden" name="idpost" value="<%=posts[index].id %>">
+                      <button title="Deletar Publicação" class="btn   "><i class="bi bi-trash text-white"></i></button></form>
                   </div>
                   <% } %>
                    

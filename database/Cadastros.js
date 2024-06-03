@@ -12,7 +12,7 @@ const Cadastros = connection.define('cadastros', {
     },
     TipoConta: {
         type: Sequelize.STRING,
-        allownull: false 
+        allownull: false  
     },
     Email: {
         type: Sequelize.STRING, 

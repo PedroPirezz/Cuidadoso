@@ -8,7 +8,6 @@ const { raw } = require('mysql2'); // Função raw do MySQL2
 
 // Iniciando o Express
 const app = express(); 
-exports.app = app;
 
 // Configurando o Body Parser para lidar com dados codificados no formato URL
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -69,20 +68,20 @@ const AdmValidade = require('./ServerModules/Functions/AdmValidate');
 // Configuração das rotas
 app.get('/', NodeRoutes.Home);
 app.get('/login', NodeRoutes.Login);
+app.post('/validarlogin', NodeRoutes.AuthLogin);
 app.get('/logout', NodeRoutes.Logout);
 app.get('/perfil/:id', NodeRoutes.ProfilePage);
-app.post('/validarlogin', NodeRoutes.AuthLogin);
 app.post('/cadastrocuidadoso', NodeRoutes.ProfessionalRegister);
 app.get('/contrate', NodeRoutes.ProfessionalListing);
 app.get('/contratar', CheckToken, NodeRoutes.HiringProfessional);
-app.post('/EnviarMensagem', CheckToken, NodeRoutes.SendMensage);
 app.post('/pago', CheckToken, NodeRoutes.PaidRequest);
 app.get('/servico/:id', CheckToken, NodeRoutes.ServiceDetail);
 app.get('/Pagamento/:idservico', CheckToken, NodeRoutes.ServicePayment);
-app.post('/aceitarsolicitacao', CheckToken, CuidadosoValidade,  NodeRoutes.AcceptRequest);
 app.post('/solicitar', CheckToken, NodeRoutes.ServiceSolicition);
-app.get('/MeusServicos', CheckToken, CuidadosoValidade, NodeRoutes.MyServices);
 app.get('/Historico', CheckToken, NodeRoutes.HistoricServices);
+app.post('/aceitarsolicitacao', CheckToken, CuidadosoValidade,  NodeRoutes.AcceptRequest);
+app.post('/EnviarMensagem', CheckToken, NodeRoutes.SendMensage);
+app.get('/MeusServicos', CheckToken, CuidadosoValidade, NodeRoutes.MyServices);
 app.post('/deletarpubli', CheckToken, CuidadosoValidade, NodeRoutes.DeletePublication);
 app.post('/negarsolicitacao', CheckToken, CuidadosoValidade, NodeRoutes.DenyRequest);
 app.post('/UploadFTPerfil', CheckToken, CuidadosoValidade, NodeRoutes.UploadPhotoProfile);
@@ -90,12 +89,12 @@ app.post('/uploadpost', CheckToken, CuidadosoValidade, NodeRoutes.NewPost);
 app.post('/updatepost', CheckToken, CuidadosoValidade, NodeRoutes.UpdatePost);
 app.post('/updatedescri', CheckToken, CuidadosoValidade, NodeRoutes.UpdateDescription);
 app.post('/salvarendereco', CheckToken, NodeRoutes.SaveNewAddress);
-app.post('/AprovarCuidador', CheckToken, AdmValidade, NodeRoutes.ApproveProfessional);
 app.post('/NovaDiaria', CheckToken, CuidadosoValidade, NodeRoutes.NewValueDaily);
 app.get('/CadastroValor', NodeRoutes.UndefinedRouteA);
 app.get('/CadastroValor1', NodeRoutes.UndefinedRouteA);
+app.post('/AprovarCuidador', CheckToken, AdmValidade, NodeRoutes.ApproveProfessional);
 
-// Iniciando o servidor na porta 80
+
 app.listen(80, function (erro) {
     if (erro) {
         console.log("Ocorreu um erro ao iniciar o Servidor!");
