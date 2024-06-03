@@ -4,7 +4,8 @@ const Solicitacoes = connection.define('Solicitacoes', {
     IDSolicitante: {
         type: Sequelize.INTEGER, 
         allowNull: false
-    },NomeSolicitante: {
+    },
+    NomeSolicitante: {
         type: Sequelize.STRING,
         allowNull: false 
     },

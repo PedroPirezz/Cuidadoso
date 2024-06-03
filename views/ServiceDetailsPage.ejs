@@ -199,13 +199,19 @@
            <% } %>   
           </div>
 
-        
+          
 
           
 <div class="container ">
   <div class="section-title"><br><br> 
     <h2>Chat</h2>
-    <h5>Converse com <%=servico.NomeCuidadoso %></h5><br><br>
+    <% if(userId == servico.IDCuidadoso){ %>
+      <h5>Converse com <%=servico.NomeSolicitante %></h5><br><br>
+      <% }else{ %>
+        <h5>Converse com <%=servico.NomeCuidadoso %></h5><br><br>
+        <% } %>
+
+
 
     <div   class="container ">
 
