@@ -1,6 +1,3 @@
-
-// models/index.js
-
 const Home = require('../Routes/Home')
 const Login = require('../Routes/Login')
 const AuthLogin = require('../Routes/AuthLogin')

@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
 // Importação de arquivos de banco de dados
-const DB = require('./ServerModules/DatabaseModels/DatabaseModels');
 const connection = require('./Database/database');
 
 // Configurando o Express para servir arquivos estáticos da pasta 'public'
@@ -63,6 +62,8 @@ const NodeRoutes = require('./ServerModules/Dependences/RoutesDependences');
 
 //Importação das Funções
 const CheckToken = require('./ServerModules/Functions/CheckToken');
+const CuidadosoValidade = require('./ServerModules/Functions/CuidadosoValidate');
+const AdmValidade = require('./ServerModules/Functions/AdmValidate');
 
 
 // Configuração das rotas
@@ -78,19 +79,19 @@ app.post('/EnviarMensagem', CheckToken, NodeRoutes.SendMensage);
 app.post('/pago', CheckToken, NodeRoutes.PaidRequest);
 app.get('/servico/:id', CheckToken, NodeRoutes.ServiceDetail);
 app.get('/Pagamento/:idservico', CheckToken, NodeRoutes.ServicePayment);
-app.post('/aceitarsolicitacao', CheckToken, NodeRoutes.AcceptRequest);
+app.post('/aceitarsolicitacao', CheckToken, CuidadosoValidade,  NodeRoutes.AcceptRequest);
 app.post('/solicitar', CheckToken, NodeRoutes.ServiceSolicition);
-app.get('/MeusServicos', CheckToken, NodeRoutes.MyServices);
+app.get('/MeusServicos', CheckToken, CuidadosoValidade, NodeRoutes.MyServices);
 app.get('/Historico', CheckToken, NodeRoutes.HistoricServices);
-app.post('/deletarpubli', CheckToken, NodeRoutes.DeletePublication);
-app.post('/negarsolicitacao', CheckToken, NodeRoutes.DenyRequest);
-app.post('/UploadFTPerfil', CheckToken, NodeRoutes.UploadPhotoProfile);
-app.post('/uploadpost', CheckToken, NodeRoutes.NewPost);
-app.post('/updatepost', CheckToken, NodeRoutes.UpdatePost);
-app.post('/updatedescri', CheckToken, NodeRoutes.UpdateDescription);
+app.post('/deletarpubli', CheckToken, CuidadosoValidade, NodeRoutes.DeletePublication);
+app.post('/negarsolicitacao', CheckToken, CuidadosoValidade, NodeRoutes.DenyRequest);
+app.post('/UploadFTPerfil', CheckToken, CuidadosoValidade, NodeRoutes.UploadPhotoProfile);
+app.post('/uploadpost', CheckToken, CuidadosoValidade, NodeRoutes.NewPost);
+app.post('/updatepost', CheckToken, CuidadosoValidade, NodeRoutes.UpdatePost);
+app.post('/updatedescri', CheckToken, CuidadosoValidade, NodeRoutes.UpdateDescription);
 app.post('/salvarendereco', CheckToken, NodeRoutes.SaveNewAddress);
-app.post('/AprovarCuidador', CheckToken, NodeRoutes.ApproveProfessional);
-app.post('/NovaDiaria', CheckToken, NodeRoutes.NewValueDaily);
+app.post('/AprovarCuidador', CheckToken, AdmValidade, NodeRoutes.ApproveProfessional);
+app.post('/NovaDiaria', CheckToken, CuidadosoValidade, NodeRoutes.NewValueDaily);
 app.get('/CadastroValor', NodeRoutes.UndefinedRouteA);
 app.get('/CadastroValor1', NodeRoutes.UndefinedRouteA);
 

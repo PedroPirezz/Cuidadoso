@@ -37,7 +37,7 @@ router.get('/perfil/:id', (req, res) => {
 
       
 
-        if (cadastro) { // Se o Perfil existir
+        if (cadastro) { // Se o Perfil existir 
 
 
 

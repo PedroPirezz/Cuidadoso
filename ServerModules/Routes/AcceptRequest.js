@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
-
 router.post('/aceitarsolicitacao',  async (req, res) => {
 
     let idsolicitacao = req.body.idsolicitacao; // ID da Solicitacao

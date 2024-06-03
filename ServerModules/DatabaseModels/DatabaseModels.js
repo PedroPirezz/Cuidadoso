@@ -1,6 +1,4 @@
-// models/index.js
 
-const connection = require('../../Database/database');
 const Cadastros = require('../../Database/Cadastros');
 const Posts = require('../../Database/Posts');
 const Enderecos = require('../../Database/Enderecos');
