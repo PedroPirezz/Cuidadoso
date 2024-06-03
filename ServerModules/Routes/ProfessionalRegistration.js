@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post('/cadastrocuidadoso', (req, res) => {
+router.post('/CuidadosoRegister', (req, res) => {
 
     //DADOS DO FORMULARIO
     let imagemBuffer = require('./public/js/imgpadrao'); // Pegando a imagem padrao
@@ -50,7 +50,7 @@ router.post('/cadastrocuidadoso', (req, res) => {
                         Celular: celular, FotoPerfil: imagemBuffer
                     });
 
-                    res.redirect('/login'); // Redirecionando para a Home
+                    res.redirect('/Login'); // Redirecionando para a Home
 
                 }
                 else { // Se o estado foi selecionado e porque o tipo de cadastro e de Cuidadoso
@@ -60,7 +60,7 @@ router.post('/cadastrocuidadoso', (req, res) => {
                         Numero: numero, Complemento: complemento, Referencia: referencia, descricao: descricao
                     });
 
-                    res.redirect('/login');
+                    res.redirect('/Login');
 
                 }
             }

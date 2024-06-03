@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/CadastroValor1', (req, res) => {
+router.get('/UndefinedRouteB', (req, res) => {
 
     let loginvar = 2;
     res.render('LoginPage.ejs', { loginvar: loginvar });

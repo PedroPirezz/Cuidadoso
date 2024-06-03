@@ -25,7 +25,7 @@
           <div class="container">
 
             <ol>
-              <li><a href="/contrate">Cuidadosos</a></li>
+              <li><a href="/CuidadosoListing">Cuidadosos</a></li>
               <li>Perfil Cuidadoso</li>
             </ol>
 
@@ -119,7 +119,7 @@
 
                     <div style="display: none;" class="container divft">
 
-                      <form action="/UploadFTPerfil" method="POST" enctype="multipart/form-data">
+                      <form action="/ChangeProfilePhoto" method="POST" enctype="multipart/form-data">
                         <br>
                         <h6>Selecione sua foto</h6>
                         <input style="width: 98%;" class="btn  btn-outline-secondary   " type="file" name="imagem"
@@ -172,7 +172,7 @@
                     <div style="display: none;" class="divdiaria">
                       <h4>Valor da sua Diaria</h4>
                       <br>
-                      <form action="/NovaDiaria" method="post">
+                      <form action="/UpdateDaily" method="post">
                         <input type="hidden" name="idperfil" value="<%=cadastro.id %>">
                         <input pl class="form-control " type="number" name="novadiaria"><br>
                         <button class="form-control " type="submit">Salvar</button>
@@ -185,7 +185,7 @@
                     <% if(cadastro.id !=userId){ %>
 
                       <% if(cadastro.TipoConta=='Cuidadoso') {%>
-                      <form action="/contratar">
+                      <form action="/HireProfessional">
                         <input type="hidden" name="cuidadoso" value="<%=cadastro.id %>">
                         <button type="submit" style="width: 50%;" class="btn btn-success">Contrate</button>
                       </form>
@@ -222,7 +222,7 @@
                   <div style="display: none;" class="inpdescri">
 
 
-                    <form action="/updatedescri" method="post">
+                    <form action="/UpdateDescription" method="post">
                       <br><br>
                       <h5>Nova Descrição</h5>
                       <input type="hidden" name="idperfil" value="<%=cadastro.id %>">
@@ -316,7 +316,7 @@
         </div>
         
         <div style="display: none; background-color: #F3F5FA;" class="container divpubli ">
-          <form action="/uploadpost" method="POST" enctype="multipart/form-data">
+          <form action="/UploadPost" method="POST" enctype="multipart/form-data">
             <div style="text-align: center;" class="container">
               <div class="section-title"><br>
                 <h2>Novo Post</h2>
@@ -390,7 +390,7 @@
                         class="btn  ">        <i class="bi bi-gear text-white "></i> </button>
                     
 
-                    <form action="/deletarpubli" method="post">
+                    <form action="/DeletePost" method="post">
                       <input type="hidden" name="idperfil" value="<%=cadastro.id %>">
                       <input type="hidden" name="idpost" value="<%=posts[index].id %>">
                       <button title="Deletar Publicação" class="btn   "><i class="bi bi-trash text-white"></i></button></form>
@@ -405,7 +405,7 @@
                       <div  class="form-group col-lg-12 editarpost">
                         <br>
                         <h6 style="color: white;" for="name">Nova Legenda</h6>
-                        <form action="/updatepost" method="post">
+                        <form action="/UpdatePost" method="post">
                           <input type="hidden" name="idpost" value="<%=posts[index].id %>">
                           <input style="width: 180%;" type="hidden" name="idperfil" value="<%=cadastro.id %>">
                           <input type="text" class="form-control" name="novoassunto" id="email" required><br>

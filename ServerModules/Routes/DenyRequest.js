@@ -3,13 +3,13 @@ const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
 
-router.post('/negarsolicitacao',  async (req, res) => {
+router.post('/DenyRequest',  async (req, res) => {
 
     let IDSolicitacao = req.body.idsolicitacao; // ID da Solicitacao
 
     DB.Solicitacoes.update({ StatusPedido: 'Solicitação Negada' }, { where: { id: IDSolicitacao } }); // Atualizando o status da solicitação
 
-    res.redirect('/servico/' + IDSolicitacao); // Redirecionando para o perfil do Cuidadoso
+    res.redirect('/Service/' + IDSolicitacao); // Redirecionando para o perfil do Cuidadoso
 
 });
 

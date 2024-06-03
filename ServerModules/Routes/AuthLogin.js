@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 
-router.post('/validarlogin', (req, res) => {
+router.post('/LoginValidate', (req, res) => {
 
     let email = req.body.email; //Pegando as informações do formulário
     let senha = req.body.senha; //Pegando as informações do formulário

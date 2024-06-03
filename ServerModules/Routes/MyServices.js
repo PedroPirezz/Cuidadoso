@@ -3,7 +3,7 @@ const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
 
-router.get('/MeusServicos', (req, res) => {
+router.get('/MyServices', (req, res) => {
 
     let IDlogado = req.session.userId; //Pegando o ID de quem está logado
 

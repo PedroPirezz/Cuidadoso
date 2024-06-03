@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
-router.post('/aceitarsolicitacao',  async (req, res) => {
+router.post('/AcceptRequest',  async (req, res) => {
 
     let idsolicitacao = req.body.idsolicitacao; // ID da Solicitacao
     let idcuidadoso = req.body.idcuidadoso; // ID do Cuidadoso
@@ -20,7 +20,7 @@ router.post('/aceitarsolicitacao',  async (req, res) => {
 
         DB.Solicitacoes.update({ StatusPedido: 'Solicitação Aceita' }, { where: { id: idsolicitacao } }); // Atualizando o status da solicitação
 
-        res.redirect('/servico/' + idsolicitacao); // Redirecionando para o perfil do Cuidadoso
+        res.redirect('/Service/' + idsolicitacao); // Redirecionando para o perfil do Cuidadoso
     });
 
 });

@@ -41,7 +41,7 @@
 
               <div class="container filtross">
 
-              <a href="/contrate"><button class="btn btn-outline-secondary ">Exibir Todos</button></a>
+              <a href="/CuidadosoListing"><button class="btn btn-outline-secondary ">Exibir Todos</button></a>
               <button onclick="filtroestado()" class="btn btn-outline-secondary ">Exibir por Estados</button>
               <button onclick="filtrocidade()" class="btn btn-outline-secondary ">Exibir por Cidades</button>
                 
@@ -56,7 +56,7 @@
                 <div class="form-group col-md-6">
                   <label for="name">Estado</label>
                   
-                  <form action="/contrate">
+                  <form action="/CuidadosoListing">
                   <select  class="form-control text-sm " name="estado" id="uf" required>
                     <option disabled selected>Selecione seu Estado</option>
                   </select><br>
@@ -72,7 +72,7 @@
                   <div class="form-group col-md-6">
                     <label for="name">Estado</label>
                     
-                    <form action="/contrate">
+                    <form action="/CuidadosoListing">
                     <select  class="form-control text-sm " name="estado" id="uf1" required>
                       <option disabled selected>Selecione seu Estado</option>
                     </select>
@@ -119,7 +119,7 @@
               <% cadastro.forEach(perfil => { %>
                 <div style="margin-top: 2%;" class="perfil col-lg-3 "> <!-- Adicionei a classe 'perfil' à div -->
           
-                  <a style="color: inherit;" href="/Perfil/<%=perfil.id %>"> <div class="icon-box">
+                  <a style="color: inherit;" href="/ProfilePage/<%=perfil.id %>"> <div class="icon-box">
                     <h4 class="nome" style="text-align: center;"><%=perfil.Nome%></h4>
                     <p style="opacity: 0%;">--------------------------------------------------------------------------</p>
                     <img class="pessoa" src="data:image/jpeg;base64, <%=perfil.FotoPerfil%>" alt="Imagem do Produto">

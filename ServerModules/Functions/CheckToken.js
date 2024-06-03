@@ -9,10 +9,10 @@ async function CheckToken(req, res, next) {
       if (user && user.Token == token) {
           next();
       } else {
-          res.redirect("/login");
+          res.redirect("/Login");
       } 
   } else {
-      res.redirect("/login");
+      res.redirect("/Login");
   }
 }
 

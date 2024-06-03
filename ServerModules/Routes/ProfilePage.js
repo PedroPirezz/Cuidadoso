@@ -20,7 +20,7 @@ const mesesDoAno = {
 
 
 
-router.get('/perfil/:id', (req, res) => {
+router.get('/ProfilePage/:id', (req, res) => {
 
     const dataAtual = new Date(); // Modulo de Data
     const numeroDoMesAtual = dataAtual.getMonth() + 1; // Mes Atual
@@ -32,7 +32,7 @@ router.get('/perfil/:id', (req, res) => {
     DB.Cadastros.findOne({ where: { id: IDPerfil } }).then(cadastro => {
 
         if(cadastro.TipoConta == 'Cliente'){
-            res.redirect('/Contrate');
+            res.redirect('/CuidadosoListing');
         }
 
       
@@ -65,7 +65,7 @@ router.get('/perfil/:id', (req, res) => {
 
         } else { // Se o Perfil não existir
 
-            res.redirect('/contrate'); // Redirecionando para a Home
+            res.redirect('/CuidadosoListing'); // Redirecionando para a Home
 
         }
     });

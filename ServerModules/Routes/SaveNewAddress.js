@@ -3,7 +3,7 @@ const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
 
-router.post('/salvarendereco',  (req, res) => {
+router.post('/SaveAddress',  (req, res) => {
 
     let Estado = req.body.estado; //Pegando as informações do formulário
     let Cidade = req.body.cidade; //Pegando as informações do formulário
@@ -27,7 +27,7 @@ router.post('/salvarendereco',  (req, res) => {
     });
 
 
-    res.redirect('/contratar?cuidadoso=' + idPerfil); //Redirecionando para o perfil do Cuidadoso
+    res.redirect('/HireProfessional?cuidadoso=' + idPerfil); //Redirecionando para o perfil do Cuidadoso
 
 });
 

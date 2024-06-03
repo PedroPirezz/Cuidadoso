@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get('/Servico/:id',  (req, res) => {
+router.get('/Service/:id',  (req, res) => {
 
     let IDLogado = req.session.userId; // ID de quem está logado
     let IDServico = req.params.id; // ID do Servico

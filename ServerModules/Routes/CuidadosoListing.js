@@ -5,7 +5,7 @@ const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
 
-router.get('/contrate', (req, res) => {
+router.get('/CuidadosoListing', (req, res) => {
 
     let filtro = req.query.estado; // Filtro por estado
     let cidade = req.query.cidade; // Filtro por Cidade

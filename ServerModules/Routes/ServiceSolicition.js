@@ -18,7 +18,7 @@ const mesesDoAno = {
 };
 
 
-router.post('/Solicitar', async (req, res) => {
+router.post('/RequestService', async (req, res) => {
 
     let dataAtual = new Date(); // Modulo para pegar a data
 

@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/logout', (req, res) => {
+router.get('/Logout', (req, res) => {
 
     req.session.isLoggedIn = false; // Verificando se o Usuário Esta Logado
     req.session.token = ''; // Esvazinando o Token

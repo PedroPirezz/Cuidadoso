@@ -19,7 +19,7 @@ const mesesDoAno = {
 
 
 
-router.get('/contratar', (req, res) => {
+router.get('/HireProfessional', (req, res) => {
 
     const hoje = new Date(); //Modulo de Data
     const DiaDeHoje = hoje.getDate(); //Pegando o dia de hoje

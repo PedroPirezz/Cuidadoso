@@ -7,7 +7,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 
-router.post('/uploadpost', upload.single('imagem'), async (req, res) => {
+router.post('/UploadPost', upload.single('imagem'), async (req, res) => {
     //Modulos de Data
     const data = new Date();
     const dia = String(data.getDate()).padStart(2, '0');
@@ -38,7 +38,7 @@ router.post('/uploadpost', upload.single('imagem'), async (req, res) => {
 
         DB.Posts.create({ IDCadastro: idcerto, NomeCadastro: cadastro.Nome, Data: data1, Assunto: assunto, Foto: certo });
 
-        res.redirect('/Perfil/' + idcerto);
+        res.redirect('/ProfilePage/' + idcerto);
     });
 });
 

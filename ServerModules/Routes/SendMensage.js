@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post('/EnviarMensagem',  (req, res) => {
+router.post('/SendMessage',  (req, res) => {
 
     let Mensagem = req.body.Mensagem;
     let IDRemetente = req.body.IDRemetente;
@@ -23,7 +23,7 @@ router.post('/EnviarMensagem',  (req, res) => {
         Status: "Enviado",
     });
 
-    res.redirect('/servico/' + IDServico);
+    res.redirect('/Service/' + IDServico);
 
 });
 

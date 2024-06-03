@@ -3,7 +3,7 @@ const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
 
 
-router.post('/updatepost', (req, res) => {
+router.post('/UpdatePost', (req, res) => {
 
     let idpost = req.body.idpost; // Recebendo o ID do Post
     let novoassunto = req.body.novoassunto; // Recebendo o novo Assunto
@@ -11,7 +11,7 @@ router.post('/updatepost', (req, res) => {
 
     DB.Posts.update({ Assunto: novoassunto }, { where: { id: idpost } }); // Atualizando o Post
 
-    res.redirect(`/Perfil/${idperfil}`); // Redirecionando para o Perfil
+    res.redirect(`/ProfilePage/${idperfil}`); // Redirecionando para o Perfil
 
 });
 

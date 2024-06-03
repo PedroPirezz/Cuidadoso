@@ -14,19 +14,19 @@
           <li><a class="nav-link scrollto active" href="/">Pagina Incial</a></li>
           <li><a class="nav-link scrollto" href="/#about">Sobre Nós</a></li>
           <li><a class="nav-link scrollto" href="/#services">Serviços</a></li>
-          <li><a class="nav-link   scrollto" href="/contrate">Cuidadosos</a></li>
+          <li><a class="nav-link   scrollto" href="/CuidadosoListing">Cuidadosos</a></li>
           <li><a class="nav-link scrollto" href="/Historico">Minhas Solicitações</a></li>
           <li class="dropdown"><a href="#"><span>Configurações</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               
 
-              <li><a href="/Perfil/<%=userId%>">Meu Perfil</a></li>
+              <li><a href="/ProfilePage/<%=userId%>">Meu Perfil</a></li>
 
 
               <li class="dropdown"><a href="#"><span>Minha Agenda</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   <li><a href="/Historico">Solicitações</a></li>
-                  <li><a href="/MeusServicos">Meus Acompanhamentos</a></li>
+                  <li><a href="/MyServices">Meus Acompanhamentos</a></li>
                   <li><a href="#">Mensagens</a></li>
                   <li><a href="#">Financeiro</a></li>
                   <li><a href="#">Resumo</a></li>
@@ -34,17 +34,17 @@
               </li>
               <li><a href="#">Alterar Senha</a></li>
               <li><a href="#">Alterar Email</a></li>
-              <li><a href="/logout">Sair (LogOut)</a></li>
+              <li><a href="/Logout">Sair (LogOut)</a></li>
             </ul>
           </li>
           
           <% if(TipoConta == 'Cliente') {%>
 
-            <li><a class="getstarted scrollto" href="/contrate">Contrate</a></li>
+            <li><a class="getstarted scrollto" href="/CuidadosoListing">Contrate</a></li>
 
             <% }else{ %>
 
-          <li><a class="getstarted scrollto" href="/Perfil/<%=userId%>">Meu Perfil</a></li>
+          <li><a class="getstarted scrollto" href="/ProfilePage/<%=userId%>">Meu Perfil</a></li>
 
 
             <% } %>
@@ -76,10 +76,10 @@
           <li><a class="nav-link scrollto active" href="/">Pagina Incial</a></li>
           <li><a class="nav-link scrollto" href="/#about">Sobre Nós</a></li>
           <li><a class="nav-link scrollto" href="/#services">Propostas</a></li>
-          <li><a class="nav-link   scrollto" href="/contrate">Cuidadores</a></li>
+          <li><a class="nav-link   scrollto" href="/CuidadosoListing">Cuidadores</a></li>
           <li><a class="nav-link scrollto" href="/#team">Fundadores</a></li>
          
-          <li><a class="nav-link scrollto" href="/contrate">Contato</a></li>
+          <li><a class="nav-link scrollto" href="/CuidadosoListing">Contato</a></li>
           <li><a class="getstarted scrollto" href="/Login">Entrar</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
