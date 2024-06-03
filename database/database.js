@@ -4,4 +4,12 @@ const connection = new Sequelize('cuidadoso', 'root', 'admin',{
     dialect: 'mysql'
 })
 
-module.exports=connection
+connection.authenticate()
+    .then(() => {
+        console.log("Database connected with SUCCESS!");
+    })
+    .catch((msgErr) => {
+        console.log("Database connection ERROR:", msgErr);
+    });
+
+module.exports = connection
