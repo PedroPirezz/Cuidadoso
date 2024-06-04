@@ -4,7 +4,7 @@
   "main": "Homepage.ejs",
   
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon Server.js"
   },
   "author": "PedroPirezz",
   "license": "ISC",
