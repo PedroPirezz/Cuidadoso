@@ -1,15 +1,10 @@
-const express = require('express'); // Framework web
+const express = require('express'); 
 const router = express.Router();
-
-// Importação das rotas
 const NodeRoutes = require('../../Dependences/RoutesDependences');
-
-//Importação das Funções
 const CheckToken = require('../../Functions/CheckToken');
 const CuidadosoValidade = require('../../Functions/CuidadosoValidate');
 const AdmValidade = require('../../Functions/AdmValidate');
 
-// Configuração das rotas
 router.get('/', NodeRoutes.Home);
 router.get('/Login', NodeRoutes.Login);
 router.post('/LoginValidate', NodeRoutes.AuthLogin);
