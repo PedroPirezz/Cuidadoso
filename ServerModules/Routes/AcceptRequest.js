@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');
+const ServiceValue = require('../Functions/ServiceValue');
 
 router.post('/AcceptRequest',  async (req, res) => {
 
@@ -14,7 +15,7 @@ router.post('/AcceptRequest',  async (req, res) => {
 
     DB.Solicitacoes.findOne({ where: { id: idsolicitacao } }).then(solicitacao => {
 
-        let ValorTaxa = solicitacao.Valor * 0.1; // Calculando o valor da Taxa
+        let ValorTaxa = ServiceValue(idcuidadoso); // Função para calcular o valor da taxa
 
         DB.Financeiro.create({ IDCuidadoso: idcuidadoso, IDSolicitacao: idsolicitacao, NomeCuidadoso: solicitacao.NomeCuidadoso, DataAceitacao: dataFormatada, ValoraPagar: ValorTaxa, ValorTotal: solicitacao.Valor, Status: 'Pendente' }); //
 
