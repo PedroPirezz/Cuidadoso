@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/CadastroValor', (req, res) => {
+router.get('/UndefinedRouteA', (req, res) => {
 
     let loginvar = 1; //Variavel que indica se o usuario está querendo fazer login ou cadastro
 
