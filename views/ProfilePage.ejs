@@ -105,9 +105,11 @@
                        
 
                         <% if(cadastro.id==userId && TipoConta=='Cuidadoso'){ %>
+                          <h5><%=cadastro.Nome %>
                             <button style="margin-left: 5%;" onclick="divft()" class="btn btn-outline-secondary   ">
                               Editar Foto Perfil
                             </button>
+                          </h5>
                             <% }else{ %>
                               <h5><%=cadastro.Nome %></h5>
 

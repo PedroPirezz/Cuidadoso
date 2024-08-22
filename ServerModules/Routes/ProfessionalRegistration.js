@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/CuidadosoRegister', (req, res) => {
 
     //DADOS DO FORMULARIO
-    let imagemBuffer = require('./public/js/imgpadrao'); // Pegando a imagem padrao
+    let imagemBuffer = require('../../public/js/imgpadrao'); // Pegando a imagem padrao
     let nomeCuidadoso = req.body.nome; // Nome do Cuidadoso
     let email = req.body.email; // Email do Cuidadoso
     let senha = req.body.senha; // Senha do Cuidadoso
