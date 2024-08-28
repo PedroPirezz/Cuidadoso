@@ -11,8 +11,8 @@ router.post('/AcceptRequest', async (req, res) => {
     let mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0'); // Pegando o mês
     let ano = dataAtual.getFullYear().toString(); // Pegando o ano
     let dataFormatada = `${dia}/${mes}/${ano}`; // Formatando a data
-
     let ValorTaxa
+    
     DB.Cadastros.findOne({ where: { id: idcuidadoso } }).then(Profissional => {
         let ValorDaDiaria = Profissional.Diaria;
         ValorTaxa = (ValorDaDiaria * 0.1);
