@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const connection = require('./database.js')
+const connection = require('./Database.js')
 const Solicitacoes = connection.define('Solicitacoes', {
     IDSolicitante: {
         type: Sequelize.INTEGER, 

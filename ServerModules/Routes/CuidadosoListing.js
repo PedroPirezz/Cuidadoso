@@ -1,5 +1,5 @@
 
-const connection = require('../../Database/database');
+const connection = require('../../Database/Database');
 const express = require('express');
 const router = express.Router();
 const DB = require('../DatabaseModels/DatabaseModels');

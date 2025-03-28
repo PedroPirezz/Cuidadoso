@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const connection = require('./database.js')
+const connection = require('./Database')
 const Cadastros = connection.define('cadastros', {
 
     Nome: {

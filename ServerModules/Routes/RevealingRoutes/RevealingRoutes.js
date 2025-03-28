@@ -1,7 +1,7 @@
 const express = require('express'); 
 const router = express.Router();
 const NodeRoutes = require('../../Dependences/RoutesDependences');
-const CheckToken = require('../../Functions/CheckToken');
+const CheckToken = require('../CheckToken');
 const CuidadosoValidade = require('../../Functions/CuidadosoValidate');
 const AdmValidade = require('../../Functions/AdmValidate');
 

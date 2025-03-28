@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const connection = require('./database.js')
+const connection = require('./Database.js')
 const Posts = connection.define('posts', {
 
     IDCadastro: {

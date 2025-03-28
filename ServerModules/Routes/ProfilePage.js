@@ -57,7 +57,6 @@ router.get('/ProfilePage/:id', (req, res) => {
                     DB.Solicitacoes.findAll({ raw: true, where: { IDCuidadoso: IDPerfil, StatusPedido: 'Solicitação Aceita' } }).then(solicitacoes => {
 
                         res.render('ProfilePage.ejs', { cadastro: cadastro, solicitacoes: solicitacoes, posts: posts, agenda: mesesDoAno[numeroDoMesAtual] }); // Renderizando
-
                     });
                 }
             });

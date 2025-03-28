@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const DB = require("../DatabaseModels/DatabaseModels");
 const express = require("express");
 const router = express.Router();
+const session = require('express-session');
 
 
 router.post('/LoginValidate', (req, res) => {
@@ -34,7 +35,7 @@ router.post('/LoginValidate', (req, res) => {
                 req.session.userId = cadastros.id; // Guardando na sessão o ID do usuário
                 req.session.token = cadastros.Token; // Guardando na sessão o Token do usuário
                 req.session.TipoConta = cadastros.TipoConta; // Guardando na sessão o Tipo de Conta do usuário
-
+                console.log("Logado com sucesso! Bem vindo " + cadastros.Nome);
                 res.redirect('/');
 
             }
